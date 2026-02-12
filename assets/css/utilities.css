@@ -1,0 +1,164 @@
+/* ============================================
+   Masterlay Renovations - Utilities
+   ============================================ */
+
+/* Containers */
+.container-narrow {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.container-wide {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* Text Gradient */
+.text-gradient {
+    background: linear-gradient(135deg, #FAA416, #FDB844);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Diagonal Cut */
+.diagonal-cut {
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+}
+
+/* Noise Overlay */
+.noise-overlay {
+    position: relative;
+}
+
+.noise-overlay::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Aspect Ratios */
+.aspect-portrait { aspect-ratio: 3/4; }
+.aspect-cinema { aspect-ratio: 21/9; }
+.aspect-wide { aspect-ratio: 16/9; }
+
+/* Image Cover */
+.img-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Decorative Border */
+.border-gradient {
+    border: 2px solid transparent;
+    background-image: linear-gradient(var(--color-dark-card), var(--color-dark-card)), linear-gradient(135deg, var(--color-primary), transparent);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+}
+
+/* Section Spacing */
+.section-padding {
+    padding: 6rem 0;
+}
+
+@media (max-width: 768px) {
+    .section-padding {
+        padding: 4rem 0;
+    }
+}
+
+/* Hide scrollbar but keep functionality */
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Magnetic hover target */
+.magnetic {
+    transition: transform 0.3s var(--transition-smooth);
+}
+
+/* Star rating display */
+.stars-display {
+    display: inline-flex;
+    gap: 2px;
+}
+
+.stars-display svg {
+    width: 16px;
+    height: 16px;
+    fill: var(--color-primary);
+}
+
+/* Badge / Pill */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.35rem 0.85rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    border-radius: 100px;
+    background: rgba(250, 164, 22, 0.1);
+    color: var(--color-primary);
+    border: 1px solid rgba(250, 164, 22, 0.2);
+}
+
+/* Divider */
+.divider {
+    width: 100%;
+    height: 1px;
+    background: var(--color-border);
+}
+
+.divider-primary {
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-primary), transparent);
+    max-width: 120px;
+}
+
+/* Loading skeleton */
+.skeleton {
+    background: linear-gradient(90deg, var(--color-dark-card) 25%, var(--color-dark-hover) 50%, var(--color-dark-card) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+    border-radius: 8px;
+}
+
+/* Overlay */
+.overlay-dark {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(10, 10, 10, 0.5), rgba(10, 10, 10, 0.85));
+}
+
+.overlay-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.9) 0%, rgba(10, 10, 10, 0.4) 100%);
+}
+
+/* Truncate text */
+.line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}

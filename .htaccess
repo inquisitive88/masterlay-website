@@ -1,0 +1,26 @@
+RewriteEngine On
+
+# ---- Prevent mod_dir from adding trailing slash to directories ----
+DirectorySlash Off
+
+# ---- Redirect .php URLs to clean URLs (except api/) ----
+RewriteCond %{THE_REQUEST} \s/(.+)\.php[\s?] [NC]
+RewriteCond %{REQUEST_URI} !^/api/ [NC]
+RewriteRule ^ /%1 [R=301,L]
+
+# ---- Redirect /index to / ----
+RewriteRule ^index$ / [R=301,L]
+
+# ---- Remove trailing slashes (except root) ----
+RewriteRule ^(.+)/$ /$1 [R=301,L]
+
+# ---- When URL matches a directory but a .php file also exists, serve the .php ----
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteCond %{DOCUMENT_ROOT}/$1.php -f
+RewriteRule ^(.+)$ $1.php [L]
+
+# ---- Serve .php files for clean URLs ----
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.+)$ $1.php [L]
