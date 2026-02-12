@@ -5,85 +5,85 @@ $pageDescription = 'Browse our portfolio of completed renovation projects includ
 $currentPage = 'gallery';
 $heroTitle = 'Our Work';
 $heroSubtitle = 'Browse our portfolio of completed projects';
-$heroBg = 'images/hero/services-page.jpg';
+$heroBg = IMG . '/hero/services-page.jpg';
 $breadcrumbs = ['Home' => '/', 'Gallery' => ''];
 
 // Gallery items
 $galleryItems = [
     [
-        'src' => 'images/gallery/modern-vinyl-plank.jpg',
+        'src' => IMG . '/gallery/modern-vinyl-plank.jpg',
         'title' => 'Modern Vinyl Plank Installation',
         'category' => 'flooring',
         'type' => 'Flooring',
     ],
     [
-        'src' => 'images/gallery/custom-oak-staircase.jpg',
+        'src' => IMG . '/gallery/custom-oak-staircase.jpg',
         'title' => 'Custom Oak Staircase',
         'category' => 'stairs',
         'type' => 'Stairs',
     ],
     [
-        'src' => 'images/gallery/luxury-spa-bathroom.jpg',
+        'src' => IMG . '/gallery/luxury-spa-bathroom.jpg',
         'title' => 'Luxury Spa Bathroom',
         'category' => 'bathrooms',
         'type' => 'Bathrooms',
     ],
     [
-        'src' => 'images/gallery/grand-entry-door.jpg',
+        'src' => IMG . '/gallery/grand-entry-door.jpg',
         'title' => 'Grand Entry Door',
         'category' => 'doors',
         'type' => 'Doors',
     ],
     [
-        'src' => 'images/gallery/crown-molding.jpg',
+        'src' => IMG . '/gallery/crown-molding.jpg',
         'title' => 'Crown Molding Detail',
         'category' => 'trim',
         'type' => 'Trim',
     ],
     [
-        'src' => 'images/gallery/crown-molding-1.jpg',
+        'src' => IMG . '/gallery/crown-molding-1.jpg',
         'title' => 'Crown Molding Detail',
         'category' => 'trim',
         'type' => 'Trim',
     ],
     [
-        'src' => 'images/gallery/hardwood-refinishing.jpg',
+        'src' => IMG . '/gallery/hardwood-refinishing.jpg',
         'title' => 'Hardwood Floor Refinishing',
         'category' => 'flooring',
         'type' => 'Flooring',
     ],
     [
-        'src' => 'images/gallery/french-door.jpg',
+        'src' => IMG . '/gallery/french-door.jpg',
         'title' => 'French Door Installation',
         'category' => 'doors',
         'type' => 'Doors',
     ],
     [
-        'src' => 'images/gallery/floating-staircase.jpg',
+        'src' => IMG . '/gallery/floating-staircase.jpg',
         'title' => 'Floating Staircase Design',
         'category' => 'stairs',
         'type' => 'Stairs',
     ],
     [
-        'src' => 'images/gallery/modern-bathroom.jpg',
+        'src' => IMG . '/gallery/modern-bathroom.jpg',
         'title' => 'Modern Bathroom Renovation',
         'category' => 'bathrooms',
         'type' => 'Bathrooms',
     ],
     [
-        'src' => 'images/gallery/wainscoting.jpg',
+        'src' => IMG . '/gallery/wainscoting.jpg',
         'title' => 'Wainscoting & Trim Work',
         'category' => 'trim',
         'type' => 'Trim',
     ],
     [
-        'src' => 'images/gallery/open-concept-floor.jpg',
+        'src' => IMG . '/gallery/open-concept-floor.jpg',
         'title' => 'Open Concept Floor Installation',
         'category' => 'flooring',
         'type' => 'Flooring',
     ],
     [
-        'src' => 'images/gallery/contemporary-staircase.jpg',
+        'src' => IMG . '/gallery/contemporary-staircase.jpg',
         'title' => 'Contemporary Staircase Railing',
         'category' => 'stairs',
         'type' => 'Stairs',

@@ -5,15 +5,15 @@
     <meta name="description" content="<?= htmlspecialchars($pageDescription ?? SITE_TAGLINE) ?>">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="<?= $basePath ?? '' ?>images/icons/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="<?= $basePath ?? '' ?>images/icons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="<?= $basePath ?? '' ?>images/icons/favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="<?= $basePath ?? '' ?>images/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/x-icon" href="<?= IMG ?>/icons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?= IMG ?>/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?= IMG ?>/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?= IMG ?>/icons/apple-touch-icon.png">
 
     <!-- Open Graph -->
     <meta property="og:title" content="<?= htmlspecialchars($pageTitle ?? SITE_NAME) ?>">
     <meta property="og:description" content="<?= htmlspecialchars($pageDescription ?? SITE_TAGLINE) ?>">
-    <meta property="og:image" content="<?= $basePath ?? '' ?>images/icons/android-chrome-512x512.png">
+    <meta property="og:image" content="<?= IMG ?>/icons/android-chrome-512x512.png">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="en_CA">
 

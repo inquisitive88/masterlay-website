@@ -19,7 +19,7 @@ $currentPage = 'services';
 $loadFaqJs = true;
 $heroTitle = $currentService['title'];
 $heroSubtitle = $currentService['short'];
-$heroBg = $basePath . $currentService['hero_image'];
+$heroBg = $currentService['hero_image'];
 $breadcrumbs = ['Home' => '/', 'Services' => '/services', $currentService['title'] => ''];
 ?>
 <!DOCTYPE html>
@@ -80,7 +80,7 @@ $breadcrumbs = ['Home' => '/', 'Services' => '/services', $currentService['title
                 <!-- Image -->
                 <div class="relative" data-animate="slide-right">
                     <div class="rounded-3xl overflow-hidden">
-                        <img src="../images/services/basement-renovation.jpg" alt="Finished basement renovation" class="w-full aspect-[4/5] object-cover" loading="lazy">
+                        <img src="<?= IMG ?>/services/basement-renovation.jpg" alt="Finished basement renovation" class="w-full aspect-[4/5] object-cover" loading="lazy">
                     </div>
                     <div class="absolute -bottom-4 -right-4 w-full h-full rounded-3xl border-2 border-primary/20 -z-10"></div>
                 </div>
@@ -95,7 +95,7 @@ $breadcrumbs = ['Home' => '/', 'Services' => '/services', $currentService['title
                 <!-- Image -->
                 <div class="relative order-2 lg:order-1" data-animate="slide-left">
                     <div class="rounded-3xl overflow-hidden">
-                        <img src="../images/general/modern-basement-living.jpg" alt="Modern basement living space" class="w-full aspect-[4/3] object-cover" loading="lazy">
+                        <img src="<?= IMG ?>/general/modern-basement-living.jpg" alt="Modern basement living space" class="w-full aspect-[4/3] object-cover" loading="lazy">
                     </div>
                 </div>
 
@@ -197,13 +197,13 @@ $breadcrumbs = ['Home' => '/', 'Services' => '/services', $currentService['title
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6" data-animate="stagger-up">
                 <div class="rounded-2xl overflow-hidden">
-                    <img src="../images/general/finished-basement.jpg" alt="Finished basement living room" class="w-full aspect-[4/3] object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="<?= IMG ?>/general/finished-basement.jpg" alt="Finished basement living room" class="w-full aspect-[4/3] object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
                 </div>
                 <div class="rounded-2xl overflow-hidden">
-                    <img src="../images/general/modern-basement-living.jpg" alt="Basement home theatre" class="w-full aspect-[4/3] object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="<?= IMG ?>/general/modern-basement-living.jpg" alt="Basement home theatre" class="w-full aspect-[4/3] object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
                 </div>
                 <div class="rounded-2xl overflow-hidden">
-                    <img src="../images/general/vinyl-plank-living.jpg" alt="Modern basement bar area" class="w-full aspect-[4/3] object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="<?= IMG ?>/general/vinyl-plank-living.jpg" alt="Modern basement bar area" class="w-full aspect-[4/3] object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
                 </div>
             </div>
         </div>

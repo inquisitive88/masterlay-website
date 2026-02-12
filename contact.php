@@ -5,7 +5,7 @@ $pageDescription = 'Get a free estimate for your renovation project. Contact Mas
 $currentPage = 'contact';
 $heroTitle = 'Get In Touch';
 $heroSubtitle = 'Free estimates for any project';
-$heroBg = 'images/general/contact-hero.jpg';
+$heroBg = IMG . '/general/contact-hero.jpg';
 $breadcrumbs = ['Home' => '/', 'Contact' => ''];
 ?>
 <!DOCTYPE html>

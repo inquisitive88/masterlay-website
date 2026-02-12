@@ -19,7 +19,7 @@ $currentPage = 'services';
 $loadFaqJs = true;
 $heroTitle = $currentService['title'];
 $heroSubtitle = $currentService['short'];
-$heroBg = $basePath . $currentService['hero_image'];
+$heroBg = $currentService['hero_image'];
 $breadcrumbs = ['Home' => '/', 'Services' => '/services', $currentService['title'] => ''];
 ?>
 <!DOCTYPE html>
@@ -86,7 +86,7 @@ $breadcrumbs = ['Home' => '/', 'Services' => '/services', $currentService['title
                 <!-- Image -->
                 <div class="relative" data-animate="slide-right">
                     <div class="rounded-3xl overflow-hidden">
-                        <img src="../images/services/bathroom-renovations.jpg" alt="Luxury bathroom renovation" class="w-full aspect-[4/5] object-cover" loading="lazy">
+                        <img src="<?= IMG ?>/services/bathroom-renovations.jpg" alt="Luxury bathroom renovation" class="w-full aspect-[4/5] object-cover" loading="lazy">
                     </div>
                     <div class="absolute -bottom-4 -right-4 w-full h-full rounded-3xl border-2 border-primary/20 -z-10"></div>
                 </div>
@@ -101,7 +101,7 @@ $breadcrumbs = ['Home' => '/', 'Services' => '/services', $currentService['title
                 <!-- Image -->
                 <div class="relative order-2 lg:order-1" data-animate="slide-left">
                     <div class="rounded-3xl overflow-hidden">
-                        <img src="../images/general/modern-bathroom-design.jpg" alt="Modern bathroom design" class="w-full aspect-[4/3] object-cover" loading="lazy">
+                        <img src="<?= IMG ?>/general/modern-bathroom-design.jpg" alt="Modern bathroom design" class="w-full aspect-[4/3] object-cover" loading="lazy">
                     </div>
                 </div>
 
@@ -203,13 +203,13 @@ $breadcrumbs = ['Home' => '/', 'Services' => '/services', $currentService['title
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6" data-animate="stagger-up">
                 <div class="rounded-2xl overflow-hidden">
-                    <img src="../images/general/freestanding-tub.jpg" alt="Modern bathroom with freestanding tub" class="w-full aspect-[4/3] object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="<?= IMG ?>/general/freestanding-tub.jpg" alt="Modern bathroom with freestanding tub" class="w-full aspect-[4/3] object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
                 </div>
                 <div class="rounded-2xl overflow-hidden">
-                    <img src="../images/general/walk-in-shower.jpg" alt="Walk-in shower with tile work" class="w-full aspect-[4/3] object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="<?= IMG ?>/general/walk-in-shower.jpg" alt="Walk-in shower with tile work" class="w-full aspect-[4/3] object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
                 </div>
                 <div class="rounded-2xl overflow-hidden">
-                    <img src="../images/general/custom-vanity.jpg" alt="Custom vanity and mirror" class="w-full aspect-[4/3] object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="<?= IMG ?>/general/custom-vanity.jpg" alt="Custom vanity and mirror" class="w-full aspect-[4/3] object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
                 </div>
             </div>
         </div>

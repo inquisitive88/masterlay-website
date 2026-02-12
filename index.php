@@ -16,7 +16,7 @@ $currentPage = 'index';
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
         <!-- Background Image -->
         <div class="absolute inset-0">
-            <img src="images/hero/luxury-home-main.jpg" alt="" class="w-full h-full object-cover ken-burns" aria-hidden="true">
+            <img src="<?= IMG ?>/hero/luxury-home-main.jpg" alt="" class="w-full h-full object-cover ken-burns" aria-hidden="true">
             <div class="absolute inset-0 bg-gradient-to-b from-dark/70 via-dark/50 to-dark"></div>
         </div>
 
@@ -127,11 +127,11 @@ $currentPage = 'index';
             <div class="flex gap-5 px-6 lg:px-[calc((100vw-1400px)/2+1.5rem)] pb-4" style="min-width: max-content;">
                 <?php
                 $projectImages = [
-                    ['src' => 'images/general/modern-floor-home.jpg', 'title' => 'Modern Floor Installation', 'type' => 'Flooring'],
-                    ['src' => 'images/gallery/custom-oak-staircase.jpg', 'title' => 'Custom Oak Staircase', 'type' => 'Stairs'],
-                    ['src' => 'images/gallery/luxury-spa-bathroom.jpg', 'title' => 'Luxury Bathroom Remodel', 'type' => 'Bathroom'],
-                    ['src' => 'images/gallery/hardwood-refinishing.jpg', 'title' => 'Hardwood Refinishing', 'type' => 'Refinishing'],
-                    ['src' => 'images/gallery/french-door.jpg', 'title' => 'Entry Door Upgrade', 'type' => 'Doors'],
+                    ['src' => IMG . '/general/modern-floor-home.jpg', 'title' => 'Modern Floor Installation', 'type' => 'Flooring'],
+                    ['src' => IMG . '/gallery/custom-oak-staircase.jpg', 'title' => 'Custom Oak Staircase', 'type' => 'Stairs'],
+                    ['src' => IMG . '/gallery/luxury-spa-bathroom.jpg', 'title' => 'Luxury Bathroom Remodel', 'type' => 'Bathroom'],
+                    ['src' => IMG . '/gallery/hardwood-refinishing.jpg', 'title' => 'Hardwood Refinishing', 'type' => 'Refinishing'],
+                    ['src' => IMG . '/gallery/french-door.jpg', 'title' => 'Entry Door Upgrade', 'type' => 'Doors'],
                 ];
                 foreach ($projectImages as $project):
                 ?>
@@ -155,7 +155,7 @@ $currentPage = 'index';
                 <!-- Image -->
                 <div class="relative" data-animate="slide-left">
                     <div class="rounded-3xl overflow-hidden">
-                        <img src="images/general/home-craftsmanship.jpg" alt="Masterlay Renovations craftsmanship" class="w-full aspect-[4/5] object-cover">
+                        <img src="<?= IMG ?>/general/home-craftsmanship.jpg" alt="Masterlay Renovations craftsmanship" class="w-full aspect-[4/5] object-cover">
                     </div>
                     <div class="absolute -bottom-4 -right-4 w-full h-full rounded-3xl border-2 border-primary/20 -z-10"></div>
                 </div>

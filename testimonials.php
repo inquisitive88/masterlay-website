@@ -6,7 +6,7 @@ $pageDescription = 'Read reviews from homeowners across the Greater Toronto Area
 $currentPage = 'testimonials';
 $heroTitle = 'Client <span class="text-gradient">Testimonials</span>';
 $heroSubtitle = 'Hear from homeowners we\'ve helped transform their spaces with precision craftsmanship.';
-$heroBg = 'images/hero/luxury-home-main.jpg';
+$heroBg = IMG . '/hero/luxury-home-main.jpg';
 $breadcrumbs = ['Home' => '/', 'Testimonials' => ''];
 ?>
 <!DOCTYPE html>

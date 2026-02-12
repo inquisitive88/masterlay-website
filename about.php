@@ -5,7 +5,7 @@ $pageDescription = 'Learn about Masterlay Renovations — Brampton\'s trusted re
 $currentPage = 'about';
 $heroTitle = 'About <span class="text-gradient">Masterlay Renovations</span>';
 $heroSubtitle = 'Brampton\'s trusted renovation experts since ' . YEAR_ESTABLISHED;
-$heroBg = 'images/general/contact-hero.jpg';
+$heroBg = IMG . '/general/contact-hero.jpg';
 $breadcrumbs = ['Home' => '/', 'About Us' => ''];
 ?>
 <!DOCTYPE html>
@@ -26,7 +26,7 @@ $breadcrumbs = ['Home' => '/', 'About Us' => ''];
                 <!-- Image -->
                 <div class="relative" data-animate="slide-left">
                     <div class="rounded-3xl overflow-hidden">
-                        <img src="images/general/team-at-work.jpg" alt="Masterlay Renovations team at work" class="w-full aspect-[4/5] object-cover" loading="lazy">
+                        <img src="<?= IMG ?>/general/team-at-work.jpg" alt="Masterlay Renovations team at work" class="w-full aspect-[4/5] object-cover" loading="lazy">
                     </div>
                     <div class="absolute -bottom-4 -right-4 w-full h-full rounded-3xl border-2 border-primary/20 -z-10"></div>
                     <!-- Experience badge -->
@@ -153,7 +153,7 @@ $breadcrumbs = ['Home' => '/', 'About Us' => ''];
                 <!-- Map / Decorative Image -->
                 <div class="relative" data-animate="slide-right">
                     <div class="rounded-3xl overflow-hidden">
-                        <img src="images/general/home-renovation-gta.jpg" alt="Beautiful home renovation in the GTA" class="w-full aspect-[4/5] object-cover" loading="lazy">
+                        <img src="<?= IMG ?>/general/home-renovation-gta.jpg" alt="Beautiful home renovation in the GTA" class="w-full aspect-[4/5] object-cover" loading="lazy">
                     </div>
                     <div class="absolute -bottom-4 -left-4 w-full h-full rounded-3xl border-2 border-primary/20 -z-10"></div>
                     <!-- Areas badge -->

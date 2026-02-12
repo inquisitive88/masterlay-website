@@ -7,7 +7,7 @@ $currentPage = 'financing';
 $loadFaqJs = true;
 $heroTitle = 'Flexible <span class="text-gradient">Financing</span> Options';
 $heroSubtitle = 'Make your dream renovation affordable with low monthly payments and easy approval.';
-$heroBg = 'images/hero/luxury-home-main.jpg';
+$heroBg = IMG . '/hero/luxury-home-main.jpg';
 $breadcrumbs = ['Home' => '/', 'Financing' => ''];
 ?>
 <!DOCTYPE html>

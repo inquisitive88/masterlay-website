@@ -1,7 +1,7 @@
 <!-- Preloader -->
 <div class="preloader" id="preloader">
     <div class="flex flex-col items-center gap-4">
-        <img src="<?= $basePath ?? '' ?>images/logos/icon.png" alt="Masterlay" class="h-14 w-auto animate-pulse">
+        <img src="<?= IMG ?>/logos/icon.png" alt="Masterlay" class="h-14 w-auto animate-pulse">
         <div class="preloader-logo">
             MASTER<span>LAY</span>
         </div>

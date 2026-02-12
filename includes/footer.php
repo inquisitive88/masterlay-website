@@ -9,7 +9,7 @@
             <!-- Column 1: Company Info -->
             <div>
                 <a href="/" class="inline-block mb-5">
-                    <img src="<?= $basePath ?>images/logos/logo-full.png" alt="<?= SITE_NAME ?>" class="h-20 w-auto">
+                    <img src="<?= IMG ?>/logos/logo-full.png" alt="<?= SITE_NAME ?>" class="h-20 w-auto">
                 </a>
                 <p class="text-white/50 text-sm leading-relaxed mb-6">
                     Elevating homes through precision craftsmanship since <?= YEAR_ESTABLISHED ?>. Premium flooring, stairs, doors, and renovation services across Ontario.

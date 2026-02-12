@@ -5,7 +5,7 @@ $pageDescription = 'Tips, trends, and project inspiration from Masterlay Renovat
 $currentPage = 'blog';
 $heroTitle = 'Renovation Insights';
 $heroSubtitle = 'Tips, trends, and project inspiration';
-$heroBg = 'images/hero/blog-page.jpg';
+$heroBg = IMG . '/hero/blog-page.jpg';
 $breadcrumbs = ['Home' => '/', 'Blog' => ''];
 ?>
 <!DOCTYPE html>
@@ -24,9 +24,9 @@ $breadcrumbs = ['Home' => '/', 'Blog' => ''];
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" data-animate="stagger-up">
                 <?php
                 $blogPlaceholders = [
-                    ['title' => 'How to Choose the Right Flooring for Your Home', 'category' => 'Flooring', 'image' => 'images/services/floor-installation.jpg'],
-                    ['title' => '5 Bathroom Renovation Trends for 2025', 'category' => 'Bathrooms', 'image' => 'images/services/bathroom-renovations.jpg'],
-                    ['title' => 'The Benefits of Custom Staircase Design', 'category' => 'Stairs', 'image' => 'images/services/custom-stairs.jpg'],
+                    ['title' => 'How to Choose the Right Flooring for Your Home', 'category' => 'Flooring', 'image' => IMG . '/services/floor-installation.jpg'],
+                    ['title' => '5 Bathroom Renovation Trends for 2025', 'category' => 'Bathrooms', 'image' => IMG . '/services/bathroom-renovations.jpg'],
+                    ['title' => 'The Benefits of Custom Staircase Design', 'category' => 'Stairs', 'image' => IMG . '/services/custom-stairs.jpg'],
                 ];
                 foreach ($blogPlaceholders as $post):
                 ?>

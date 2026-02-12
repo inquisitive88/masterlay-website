@@ -4,7 +4,7 @@
 $heroTitle = $heroTitle ?? 'Page Title';
 $heroSubtitle = $heroSubtitle ?? '';
 $heroBasePath = $basePath ?? '';
-$heroBg = $heroBg ?? $heroBasePath . 'images/hero/luxury-home-main.jpg';
+$heroBg = $heroBg ?? IMG . '/hero/luxury-home-main.jpg';
 ?>
 <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
     <!-- Background -->

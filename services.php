@@ -5,7 +5,7 @@ $pageDescription = 'Explore our full range of renovation services — flooring i
 $currentPage = 'services';
 $heroTitle = 'Our <span class="text-gradient">Services</span>';
 $heroSubtitle = 'From floors to full renovations, we do it all';
-$heroBg = 'images/hero/services-page.jpg';
+$heroBg = IMG . '/hero/services-page.jpg';
 $breadcrumbs = ['Home' => '/', 'Services' => ''];
 ?>
 <!DOCTYPE html>
@@ -71,7 +71,7 @@ $breadcrumbs = ['Home' => '/', 'Services' => ''];
                 <!-- Image -->
                 <div class="relative" data-animate="slide-left">
                     <div class="rounded-3xl overflow-hidden">
-                        <img src="images/general/craftsmanship.jpg" alt="Masterlay renovation craftsmanship" class="w-full aspect-[4/5] object-cover" loading="lazy">
+                        <img src="<?= IMG ?>/general/craftsmanship.jpg" alt="Masterlay renovation craftsmanship" class="w-full aspect-[4/5] object-cover" loading="lazy">
                     </div>
                     <div class="absolute -bottom-4 -right-4 w-full h-full rounded-3xl border-2 border-primary/20 -z-10"></div>
                 </div>

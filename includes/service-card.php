@@ -5,7 +5,7 @@ $cardBasePath = $basePath ?? '';
 ?>
 <a href="<?= $cardBasePath ?>services/<?= $service['slug'] ?>" class="service-card block">
     <div class="card-image">
-        <img src="<?= $cardBasePath ?><?= $service['image'] ?>" alt="<?= htmlspecialchars($service['title']) ?>" loading="lazy">
+        <img src="<?= $service['image'] ?>" alt="<?= htmlspecialchars($service['title']) ?>" loading="lazy">
     </div>
     <div class="card-body">
         <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-3">

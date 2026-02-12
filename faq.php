@@ -6,7 +6,7 @@ $pageDescription = 'Find answers to common questions about Masterlay Renovations
 $currentPage = 'faq';
 $heroTitle = 'Frequently Asked <span class="text-gradient">Questions</span>';
 $heroSubtitle = 'Everything you need to know about our renovation services.';
-$heroBg = 'images/hero/luxury-home-main.jpg';
+$heroBg = IMG . '/hero/luxury-home-main.jpg';
 $breadcrumbs = ['Home' => '/', 'FAQ' => ''];
 
 $faqCategories = [

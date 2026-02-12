@@ -5,7 +5,7 @@
         <div class="flex items-center justify-between">
             <!-- Logo -->
             <a href="/" class="flex items-center gap-2.5 z-50 relative">
-                <img src="<?= $basePath ?>images/logos/icon.png" alt="Masterlay" class="h-8 w-auto">
+                <img src="<?= IMG ?>/logos/icon.png" alt="Masterlay" class="h-8 w-auto">
                 <span class="font-heading text-xl font-bold text-white">MASTER<span class="text-primary">LAY</span></span>
             </a>
 
