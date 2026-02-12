@@ -56,8 +56,9 @@
     </script>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="<?= $basePath ?? '' ?>assets/css/main.css">
-    <link rel="stylesheet" href="<?= $basePath ?? '' ?>assets/css/animations.css">
-    <link rel="stylesheet" href="<?= $basePath ?? '' ?>assets/css/components.css">
-    <link rel="stylesheet" href="<?= $basePath ?? '' ?>assets/css/utilities.css">
+    <?php $cacheBust = '?v=' . time(); ?>
+    <link rel="stylesheet" href="<?= $basePath ?? '' ?>assets/css/main.css<?= $cacheBust ?>">
+    <link rel="stylesheet" href="<?= $basePath ?? '' ?>assets/css/animations.css<?= $cacheBust ?>">
+    <link rel="stylesheet" href="<?= $basePath ?? '' ?>assets/css/components.css<?= $cacheBust ?>">
+    <link rel="stylesheet" href="<?= $basePath ?? '' ?>assets/css/utilities.css<?= $cacheBust ?>">
 </head>

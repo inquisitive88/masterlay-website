@@ -11,11 +11,12 @@
 <script src="https://unpkg.com/split-type@0.3.4/umd/index.min.js"></script>
 
 <!-- Custom Scripts -->
-<script src="<?= $basePath ?>assets/js/smooth-scroll.js"></script>
-<script src="<?= $basePath ?>assets/js/loader.js"></script>
-<script src="<?= $basePath ?>assets/js/navigation.js"></script>
-<script src="<?= $basePath ?>assets/js/animations.js"></script>
-<script src="<?= $basePath ?>assets/js/counter.js"></script>
+<?php $jsCacheBust = '?v=' . time(); ?>
+<script src="<?= $basePath ?>assets/js/smooth-scroll.js<?= $jsCacheBust ?>"></script>
+<script src="<?= $basePath ?>assets/js/loader.js<?= $jsCacheBust ?>"></script>
+<script src="<?= $basePath ?>assets/js/navigation.js<?= $jsCacheBust ?>"></script>
+<script src="<?= $basePath ?>assets/js/animations.js<?= $jsCacheBust ?>"></script>
+<script src="<?= $basePath ?>assets/js/counter.js<?= $jsCacheBust ?>"></script>
 
 <!-- Page-specific scripts (loaded conditionally) -->
 <?php if (isset($currentPage) && $currentPage === 'contact'): ?>
