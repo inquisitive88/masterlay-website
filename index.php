@@ -1,5 +1,5 @@
 <?php
-require_once 'includes/config.php';
+require_once 'includes/content-loader.php';
 $pageTitle = SITE_NAME . ' | Premium Renovations in Brampton, ON';
 $pageDescription = 'Masterlay Renovations offers premium flooring, custom stairs, door installation, trim work, and bathroom renovations in Brampton and the Greater Toronto Area.';
 $currentPage = 'index';

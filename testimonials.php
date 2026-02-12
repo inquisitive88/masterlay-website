@@ -1,5 +1,5 @@
 <?php
-require_once 'includes/config.php';
+require_once 'includes/content-loader.php';
 
 $pageTitle = 'Client Testimonials | ' . SITE_NAME;
 $pageDescription = 'Read reviews from homeowners across the Greater Toronto Area who trust Masterlay Renovations for premium flooring, stairs, doors, trim, and bathroom renovations.';

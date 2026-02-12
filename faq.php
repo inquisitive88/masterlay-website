@@ -1,5 +1,5 @@
 <?php
-require_once 'includes/config.php';
+require_once 'includes/content-loader.php';
 
 $pageTitle = 'Frequently Asked Questions | ' . SITE_NAME;
 $pageDescription = 'Find answers to common questions about Masterlay Renovations services, pricing, process, and more.';

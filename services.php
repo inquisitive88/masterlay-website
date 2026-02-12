@@ -1,5 +1,5 @@
 <?php
-require_once 'includes/config.php';
+require_once 'includes/content-loader.php';
 $pageTitle = 'Our Services | ' . SITE_NAME;
 $pageDescription = 'Explore our full range of renovation services — flooring installation, floor refinishing, custom stairs, door installation, trim work, and bathroom renovations in Brampton and the GTA.';
 $currentPage = 'services';

@@ -15,7 +15,7 @@ $heroBg = $heroBg ?? IMG . '/hero/luxury-home-main.jpg';
 
     <div class="container-wide relative z-10">
         <?php if (isset($breadcrumbs)): ?>
-            <?php include ($heroBasePath ? $heroBasePath : '') . 'includes/breadcrumb.php'; ?>
+            <?php include __DIR__ . '/breadcrumb.php'; ?>
         <?php endif; ?>
 
         <h1 class="hero-heading font-heading text-4xl md:text-5xl lg:text-6xl font-800 leading-[1.15] max-w-4xl mb-4">

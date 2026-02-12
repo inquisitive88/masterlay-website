@@ -1,5 +1,5 @@
 <?php
-require_once 'includes/config.php';
+require_once 'includes/content-loader.php';
 $pageTitle = 'Gallery | ' . SITE_NAME;
 $pageDescription = 'Browse our portfolio of completed renovation projects including flooring, custom stairs, doors, trim, and bathroom renovations across the Greater Toronto Area.';
 $currentPage = 'gallery';
@@ -8,89 +8,27 @@ $heroSubtitle = 'Browse our portfolio of completed projects';
 $heroBg = IMG . '/hero/services-page.jpg';
 $breadcrumbs = ['Home' => '/', 'Gallery' => ''];
 
-// Gallery items
-$galleryItems = [
-    [
-        'src' => IMG . '/gallery/modern-vinyl-plank.jpg',
-        'title' => 'Modern Vinyl Plank Installation',
-        'category' => 'flooring',
-        'type' => 'Flooring',
-    ],
-    [
-        'src' => IMG . '/gallery/custom-oak-staircase.jpg',
-        'title' => 'Custom Oak Staircase',
-        'category' => 'stairs',
-        'type' => 'Stairs',
-    ],
-    [
-        'src' => IMG . '/gallery/luxury-spa-bathroom.jpg',
-        'title' => 'Luxury Spa Bathroom',
-        'category' => 'bathrooms',
-        'type' => 'Bathrooms',
-    ],
-    [
-        'src' => IMG . '/gallery/grand-entry-door.jpg',
-        'title' => 'Grand Entry Door',
-        'category' => 'doors',
-        'type' => 'Doors',
-    ],
-    [
-        'src' => IMG . '/gallery/crown-molding.jpg',
-        'title' => 'Crown Molding Detail',
-        'category' => 'trim',
-        'type' => 'Trim',
-    ],
-    [
-        'src' => IMG . '/gallery/crown-molding-1.jpg',
-        'title' => 'Crown Molding Detail',
-        'category' => 'trim',
-        'type' => 'Trim',
-    ],
-    [
-        'src' => IMG . '/gallery/hardwood-refinishing.jpg',
-        'title' => 'Hardwood Floor Refinishing',
-        'category' => 'flooring',
-        'type' => 'Flooring',
-    ],
-    [
-        'src' => IMG . '/gallery/french-door.jpg',
-        'title' => 'French Door Installation',
-        'category' => 'doors',
-        'type' => 'Doors',
-    ],
-    [
-        'src' => IMG . '/gallery/floating-staircase.jpg',
-        'title' => 'Floating Staircase Design',
-        'category' => 'stairs',
-        'type' => 'Stairs',
-    ],
-    [
-        'src' => IMG . '/gallery/modern-bathroom.jpg',
-        'title' => 'Modern Bathroom Renovation',
-        'category' => 'bathrooms',
-        'type' => 'Bathrooms',
-    ],
-    [
-        'src' => IMG . '/gallery/wainscoting.jpg',
-        'title' => 'Wainscoting & Trim Work',
-        'category' => 'trim',
-        'type' => 'Trim',
-    ],
-    [
-        'src' => IMG . '/gallery/open-concept-floor.jpg',
-        'title' => 'Open Concept Floor Installation',
-        'category' => 'flooring',
-        'type' => 'Flooring',
-    ],
-    [
-        'src' => IMG . '/gallery/contemporary-staircase.jpg',
-        'title' => 'Contemporary Staircase Railing',
-        'category' => 'stairs',
-        'type' => 'Stairs',
-    ],
-];
+// Gallery items — loaded from DB via content-loader.php, with hardcoded fallback
+if (empty($galleryItems)) {
+    $galleryItems = [
+        ['src' => IMG . '/gallery/modern-vinyl-plank.jpg', 'title' => 'Modern Vinyl Plank Installation', 'category' => 'flooring', 'type' => 'Flooring'],
+        ['src' => IMG . '/gallery/custom-oak-staircase.jpg', 'title' => 'Custom Oak Staircase', 'category' => 'stairs', 'type' => 'Stairs'],
+        ['src' => IMG . '/gallery/luxury-spa-bathroom.jpg', 'title' => 'Luxury Spa Bathroom', 'category' => 'bathrooms', 'type' => 'Bathrooms'],
+        ['src' => IMG . '/gallery/grand-entry-door.jpg', 'title' => 'Grand Entry Door', 'category' => 'doors', 'type' => 'Doors'],
+        ['src' => IMG . '/gallery/crown-molding.jpg', 'title' => 'Crown Molding Detail', 'category' => 'trim', 'type' => 'Trim'],
+        ['src' => IMG . '/gallery/crown-molding-1.jpg', 'title' => 'Crown Molding Detail', 'category' => 'trim', 'type' => 'Trim'],
+        ['src' => IMG . '/gallery/hardwood-refinishing.jpg', 'title' => 'Hardwood Floor Refinishing', 'category' => 'flooring', 'type' => 'Flooring'],
+        ['src' => IMG . '/gallery/french-door.jpg', 'title' => 'French Door Installation', 'category' => 'doors', 'type' => 'Doors'],
+        ['src' => IMG . '/gallery/floating-staircase.jpg', 'title' => 'Floating Staircase Design', 'category' => 'stairs', 'type' => 'Stairs'],
+        ['src' => IMG . '/gallery/modern-bathroom.jpg', 'title' => 'Modern Bathroom Renovation', 'category' => 'bathrooms', 'type' => 'Bathrooms'],
+        ['src' => IMG . '/gallery/wainscoting.jpg', 'title' => 'Wainscoting & Trim Work', 'category' => 'trim', 'type' => 'Trim'],
+        ['src' => IMG . '/gallery/open-concept-floor.jpg', 'title' => 'Open Concept Floor Installation', 'category' => 'flooring', 'type' => 'Flooring'],
+        ['src' => IMG . '/gallery/contemporary-staircase.jpg', 'title' => 'Contemporary Staircase Railing', 'category' => 'stairs', 'type' => 'Stairs'],
+    ];
+}
 
-$categories = [
+// Gallery categories — loaded from DB via content-loader.php, with hardcoded fallback
+$categories = !empty($galleryCategories) ? $galleryCategories : [
     ['slug' => 'all', 'label' => 'All'],
     ['slug' => 'flooring', 'label' => 'Flooring'],
     ['slug' => 'stairs', 'label' => 'Stairs'],

@@ -1,10 +1,10 @@
 <?php
-require_once 'includes/config.php';
+require_once 'includes/content-loader.php';
 $pageTitle = 'About Us | ' . SITE_NAME;
 $pageDescription = 'Learn about Masterlay Renovations — Brampton\'s trusted renovation experts since 2018. Over 500 projects completed with precision craftsmanship and family values.';
 $currentPage = 'about';
 $heroTitle = 'About <span class="text-gradient">Masterlay Renovations</span>';
-$heroSubtitle = 'Brampton\'s trusted renovation experts since ' . YEAR_ESTABLISHED;
+$heroSubtitle = 'Brampton\'s trusted renovation experts since ' . cms_setting('year_established', (string)YEAR_ESTABLISHED);
 $heroBg = IMG . '/general/contact-hero.jpg';
 $breadcrumbs = ['Home' => '/', 'About Us' => ''];
 ?>
@@ -31,7 +31,7 @@ $breadcrumbs = ['Home' => '/', 'About Us' => ''];
                     <div class="absolute -bottom-4 -right-4 w-full h-full rounded-3xl border-2 border-primary/20 -z-10"></div>
                     <!-- Experience badge -->
                     <div class="absolute -top-4 -left-4 glass rounded-2xl p-5 text-center">
-                        <p class="font-heading text-3xl font-800 text-primary"><?= date('Y') - YEAR_ESTABLISHED ?>+</p>
+                        <p class="font-heading text-3xl font-800 text-primary"><?= date('Y') - (int)cms_setting('year_established', (string)YEAR_ESTABLISHED) ?>+</p>
                         <p class="text-white/60 text-xs font-medium uppercase tracking-wider">Years</p>
                     </div>
                 </div>
@@ -43,7 +43,7 @@ $breadcrumbs = ['Home' => '/', 'About Us' => ''];
 
                     <div class="space-y-5 text-white/60 leading-relaxed">
                         <p data-animate="fade-up">
-                            <?= SITE_NAME ?> was founded in <?= YEAR_ESTABLISHED ?> with a straightforward mission: deliver renovation work that homeowners can truly be proud of. What started as a small flooring operation in Brampton has grown into one of the GTA's most trusted full-service renovation companies.
+                            <?= cms_setting('site_name', SITE_NAME) ?> was founded in <?= cms_setting('year_established', (string)YEAR_ESTABLISHED) ?> with a straightforward mission: deliver renovation work that homeowners can truly be proud of. What started as a small flooring operation in Brampton has grown into one of the GTA's most trusted full-service renovation companies.
                         </p>
                         <p data-animate="fade-up">
                             Our roots are in family values — honesty, reliability, and doing the job right the first time. We treat every home as if it were our own, bringing the same care and attention to a single-room floor install as we do to a complete bathroom overhaul.

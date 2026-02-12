@@ -1,5 +1,5 @@
 <?php
-require_once '../includes/config.php';
+require_once '../includes/content-loader.php';
 
 $basePath = '../';
 $currentSlug = 'bathroom-renovations';

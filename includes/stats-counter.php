@@ -12,7 +12,7 @@
             <!-- Years -->
             <div class="text-center" data-animate="scale-in">
                 <div class="font-heading text-4xl lg:text-5xl font-800 text-primary mb-2">
-                    <span data-counter="<?= date('Y') - YEAR_ESTABLISHED ?>" data-suffix="+">0</span>
+                    <span data-counter="<?= date('Y') - (int)cms_setting('year_established', (string)YEAR_ESTABLISHED) ?>" data-suffix="+">0</span>
                 </div>
                 <p class="text-white/50 text-sm font-medium uppercase tracking-wider">Years Experience</p>
             </div>

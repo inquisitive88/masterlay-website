@@ -1,8 +1,22 @@
+<?php
+// SEO: Override page meta from CMS database if available
+if (!empty($cms_seo)) {
+    if (!empty($cms_seo['meta_title']))       $pageTitle = $cms_seo['meta_title'];
+    if (!empty($cms_seo['meta_description'])) $pageDescription = $cms_seo['meta_description'];
+}
+$_ogTitle = !empty($cms_seo['og_title']) ? $cms_seo['og_title'] : ($pageTitle ?? SITE_NAME);
+$_ogDesc  = !empty($cms_seo['og_description']) ? $cms_seo['og_description'] : ($pageDescription ?? SITE_TAGLINE);
+$_ogImage = !empty($cms_seo['og_image_url']) ? $cms_seo['og_image_url'] : IMG . '/icons/android-chrome-512x512.png';
+$_canonical = !empty($cms_seo['canonical_url']) ? $cms_seo['canonical_url'] : '';
+?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= htmlspecialchars($pageTitle ?? SITE_NAME) ?></title>
     <meta name="description" content="<?= htmlspecialchars($pageDescription ?? SITE_TAGLINE) ?>">
+    <?php if ($_canonical): ?>
+    <link rel="canonical" href="<?= htmlspecialchars($_canonical) ?>">
+    <?php endif; ?>
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="<?= IMG ?>/icons/favicon.ico">
@@ -11,9 +25,9 @@
     <link rel="apple-touch-icon" sizes="180x180" href="<?= IMG ?>/icons/apple-touch-icon.png">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="<?= htmlspecialchars($pageTitle ?? SITE_NAME) ?>">
-    <meta property="og:description" content="<?= htmlspecialchars($pageDescription ?? SITE_TAGLINE) ?>">
-    <meta property="og:image" content="<?= IMG ?>/icons/android-chrome-512x512.png">
+    <meta property="og:title" content="<?= htmlspecialchars($_ogTitle) ?>">
+    <meta property="og:description" content="<?= htmlspecialchars($_ogDesc) ?>">
+    <meta property="og:image" content="<?= htmlspecialchars($_ogImage) ?>">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="en_CA">
 
