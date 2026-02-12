@@ -29,4 +29,12 @@ jobs:
             --chown=admin:www-data \
             --chmod=Du=rwx,Dgo=rx,Fu=rw,Fgo=r \
             --exclude ".git" \
+            --exclude "vendor" \
             ./ admin@46.224.219.50:/var/www/masterlay-website
+
+      - name: Run Composer on server
+        run: |
+          ssh admin@46.224.219.50 "
+            cd /var/www/masterlay-website &&
+            composer install --no-dev --optimize-autoloader
+          "

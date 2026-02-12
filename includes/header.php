@@ -14,7 +14,7 @@
                 <?php foreach ($navigation as $nav): ?>
                     <?php if (!empty($nav['dropdown'])): ?>
                         <div class="nav-item-dropdown relative">
-                            <a href="<?= $basePath . ltrim($nav['url'], '/') ?>" class="nav-link flex items-center gap-1 <?= isActivePage($nav['page']) ? 'active' : '' ?>">
+                            <a href="<?= $nav['url'] ?>" class="nav-link flex items-center gap-1 <?= isActivePage($nav['page']) ? 'active' : '' ?>">
                                 <?= $nav['label'] ?>
                                 <svg class="w-3.5 h-3.5 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                             </a>
@@ -28,7 +28,7 @@
                             </div>
                         </div>
                     <?php else: ?>
-                        <a href="<?= $basePath . ltrim($nav['url'], '/') ?>" class="nav-link <?= isActivePage($nav['page']) ? 'active' : '' ?>">
+                        <a href="<?= $nav['url'] ?>" class="nav-link <?= isActivePage($nav['page']) ? 'active' : '' ?>">
                             <?= $nav['label'] ?>
                         </a>
                     <?php endif; ?>
@@ -61,7 +61,7 @@
 <div class="mobile-menu" id="mobileMenu">
     <nav class="flex flex-col items-center gap-2 text-center">
         <?php foreach ($navigation as $nav): ?>
-            <a href="<?= $basePath . ltrim($nav['url'], '/') ?>" class="mobile-nav-link"><?= $nav['label'] ?></a>
+            <a href="<?= $nav['url'] ?>" class="mobile-nav-link"><?= $nav['label'] ?></a>
             <?php if (!empty($nav['dropdown'])): ?>
                 <div class="flex flex-col items-center gap-1 mb-2">
                     <?php foreach ($services as $service): ?>
