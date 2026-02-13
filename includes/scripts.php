@@ -28,6 +28,10 @@
 <?php if (isset($currentPage) && ($currentPage === 'faq' || isset($loadFaqJs))): ?>
 <script src="<?= $basePath ?>assets/js/faq.js"></script>
 <?php endif; ?>
+<?php if (isset($currentPage) && $currentPage === 'quote'): ?>
+<script src="<?= $basePath ?>assets/js/forms.js<?= $jsCacheBust ?>"></script>
+<script src="<?= $basePath ?>assets/js/quote.js<?= $jsCacheBust ?>"></script>
+<?php endif; ?>
 
 <!-- App Init (always last) -->
 <script src="<?= $basePath ?>assets/js/app.js"></script>

@@ -243,6 +243,18 @@ $cms_tables = [
             INDEX idx_parent (parent_id)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
     ",
+
+    // Quote Pricing
+    'ml_cms_quote_pricing' => "
+        CREATE TABLE IF NOT EXISTS ml_cms_quote_pricing (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            pricing_key VARCHAR(100) NOT NULL UNIQUE,
+            pricing_value DECIMAL(10,2) NOT NULL,
+            service_type VARCHAR(50) NOT NULL,
+            label VARCHAR(200) NOT NULL,
+            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+    ",
 ];
 
 // Create tables

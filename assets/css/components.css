@@ -510,7 +510,8 @@ textarea.form-input {
     display: none;
 }
 
-.form-input.error + .form-error {
+.form-input.error + .form-error,
+.form-group.error .form-error {
     display: block;
 }
 
@@ -643,4 +644,115 @@ textarea.form-input {
     background: var(--color-primary);
     border-radius: 2px;
     animation: loader-progress 1.8s var(--transition-smooth) forwards;
+}
+
+/* ---- Quote Calculator ---- */
+.quote-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1.5rem;
+    background: var(--color-dark-card);
+    border: 1.5px solid var(--color-border);
+    border-radius: 14px;
+    color: var(--color-text);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.quote-card:hover:not(:disabled) {
+    border-color: rgba(250, 164, 22, 0.3);
+    background: rgba(250, 164, 22, 0.03);
+}
+
+.quote-card--active {
+    border-color: var(--color-primary);
+    background: rgba(250, 164, 22, 0.06);
+    box-shadow: 0 0 0 3px rgba(250, 164, 22, 0.1);
+}
+
+.quote-card--disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.quote-toggle {
+    padding: 0.75rem 1.25rem;
+    background: var(--color-dark-card);
+    border: 1.5px solid var(--color-border);
+    border-radius: 10px;
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-align: center;
+}
+
+.quote-toggle:hover {
+    border-color: rgba(250, 164, 22, 0.3);
+}
+
+.quote-toggle--active {
+    border-color: var(--color-primary);
+    background: rgba(250, 164, 22, 0.08);
+    color: var(--color-primary);
+}
+
+.quote-radio {
+    padding: 0.75rem 1rem;
+    background: var(--color-dark-card);
+    border: 1.5px solid var(--color-border);
+    border-radius: 10px;
+    color: var(--color-text-secondary);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-align: center;
+}
+
+.quote-radio:hover {
+    border-color: rgba(250, 164, 22, 0.3);
+}
+
+.quote-radio--active {
+    border-color: var(--color-primary);
+    background: rgba(250, 164, 22, 0.08);
+    color: var(--color-primary);
+}
+
+.quote-info-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    color: var(--color-primary);
+    opacity: 0.7;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    vertical-align: middle;
+    margin-left: 4px;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.quote-info-btn:hover {
+    opacity: 1;
+}
+
+.quote-step--hidden {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.3s ease;
+}
+
+.badge-sm {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.5rem;
 }
