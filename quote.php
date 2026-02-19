@@ -372,9 +372,11 @@ $breadcrumbs = ['Home' => '/', 'Get Instant Quote' => ''];
 </main>
 
 <!-- Contact Info Modal -->
-<div id="contactModal" class="fixed inset-0 z-[100] flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
-    <div class="absolute inset-0 bg-black/70" id="contactModalOverlay"></div>
-    <div class="relative bg-dark-50 border border-white/10 rounded-2xl max-w-lg w-full p-8 transform scale-95 transition-transform duration-300" id="contactModalContent">
+<div id="contactModal" class="fixed inset-0 z-[100] opacity-0 pointer-events-none transition-opacity duration-300">
+    <div class="fixed inset-0 bg-black/70" id="contactModalOverlay"></div>
+    <div class="fixed inset-0 overflow-y-auto">
+        <div class="flex min-h-full items-center justify-center p-4">
+            <div class="relative bg-dark-50 border border-white/10 rounded-2xl max-w-lg w-full p-8 transform scale-95 transition-transform duration-300" id="contactModalContent">
         <button type="button" id="contactModalClose" class="absolute top-4 right-4 text-white/40 hover:text-white transition-colors">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
@@ -411,6 +413,8 @@ $breadcrumbs = ['Home' => '/', 'Get Instant Quote' => ''];
                 Send My Quote
                 <svg class="w-5 h-5 btn-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
             </button>
+        </div>
+            </div>
         </div>
     </div>
 </div>

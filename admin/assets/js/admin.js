@@ -33,7 +33,7 @@
             if (window.innerWidth <= 1024 &&
                 sidebar.classList.contains('mobile-open') &&
                 !sidebar.contains(e.target) &&
-                e.target !== toggleBtn) {
+                !toggleBtn.contains(e.target)) {
                 sidebar.classList.remove('mobile-open');
             }
         });

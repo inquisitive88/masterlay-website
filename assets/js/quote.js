@@ -471,11 +471,31 @@
 
         if (!modal || !openBtn) return;
 
+        var savedScrollY = 0;
+
+        function lockBodyScroll() {
+            savedScrollY = window.scrollY;
+            document.body.style.position = 'fixed';
+            document.body.style.top = '-' + savedScrollY + 'px';
+            document.body.style.left = '0';
+            document.body.style.right = '0';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function unlockBodyScroll() {
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.left = '';
+            document.body.style.right = '';
+            document.body.style.overflow = '';
+            window.scrollTo(0, savedScrollY);
+        }
+
         function openModal() {
             modal.classList.remove('pointer-events-none');
             modal.style.opacity = '1';
             content.style.transform = 'scale(1)';
-            document.body.style.overflow = 'hidden';
+            lockBodyScroll();
             setTimeout(function() {
                 var first = modal.querySelector('input');
                 if (first) first.focus();
@@ -485,7 +505,7 @@
         function closeModal() {
             modal.style.opacity = '0';
             content.style.transform = 'scale(0.95)';
-            document.body.style.overflow = '';
+            unlockBodyScroll();
             setTimeout(function() {
                 modal.classList.add('pointer-events-none');
             }, 300);
