@@ -231,6 +231,28 @@ $breadcrumbs = ['Home' => '/', 'Get Instant Quote' => ''];
                             <input type="hidden" name="floor_include_material" id="floor_include_material" value="no">
                         </div>
 
+                        <!-- Labour type (shown when include_material = no) -->
+                        <div id="floorLabourOnlySection">
+                            <label class="form-label">Floor Type (Labour Only)</label>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-2">
+                                <button type="button" data-radio="floor_labour_material_type" data-value="vinyl_laminate" class="quote-radio quote-radio--active">Vinyl / Laminate</button>
+                                <button type="button" data-radio="floor_labour_material_type" data-value="engineered" class="quote-radio">Engineered Hardwood</button>
+                                <button type="button" data-radio="floor_labour_material_type" data-value="hardwood" class="quote-radio">Hardwood</button>
+                            </div>
+                            <input type="hidden" name="floor_labour_material_type" id="floor_labour_material_type" value="vinyl_laminate">
+                            <div id="floorLabourEngMethodSection" class="mt-3" hidden>
+                                <label class="form-label">
+                                    Installation Method
+                                    <button type="button" class="quote-info-btn" data-info="eng_method"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></button>
+                                </label>
+                                <div class="grid grid-cols-2 gap-3 mt-2">
+                                    <button type="button" data-radio="floor_labour_eng_method" data-value="glue_nail" class="quote-radio quote-radio--active">Glue & Nail</button>
+                                    <button type="button" data-radio="floor_labour_eng_method" data-value="nails_only" class="quote-radio">Nails Only</button>
+                                </div>
+                                <input type="hidden" name="floor_labour_eng_method" id="floor_labour_eng_method" value="glue_nail">
+                            </div>
+                        </div>
+
                         <!-- Material Selection (shown when include_material = yes) -->
                         <div id="floorMaterialSection" hidden>
                             <label class="form-label mb-3">Select Material(s) <span class="text-white/30 text-xs font-normal">— you can pick multiple</span></label>

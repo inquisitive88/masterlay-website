@@ -250,6 +250,8 @@ if ($service_type === 'sanding') {
     // 3) Labour — per material type
     $totalLabour = 0;
     $engMethod = $_POST['floor_eng_method'] ?? 'glue_nail';
+    $labourOnlyType = $_POST['floor_labour_material_type'] ?? 'vinyl_laminate';
+    $labourOnlyEngMethod = $_POST['floor_labour_eng_method'] ?? 'glue_nail';
 
     if (!empty($selectedMaterials)) {
         // Labour based on selected materials
@@ -279,13 +281,30 @@ if ($service_type === 'sanding') {
             }
         }
     } else {
-        // No specific materials selected — use total sqft with generic labour
-        // Default to vinyl/laminate rate as base
+        // No specific materials selected — use total sqft with labour-only type.
         if ($totalSqft > 0) {
-            $labourRate = $pricing['floor_labour_vinyl_laminate'];
+            $labourRate = 0;
+            $labourLabel = 'Installation Labour';
+
+            if ($labourOnlyType === 'hardwood') {
+                $labourRate = $pricing['floor_labour_hardwood'];
+                $labourLabel = 'Hardwood Installation Labour';
+            } elseif ($labourOnlyType === 'engineered') {
+                if ($labourOnlyEngMethod === 'nails_only') {
+                    $labourRate = $pricing['floor_labour_eng_nails'];
+                    $labourLabel = 'Eng. Hardwood Labour (Nails Only)';
+                } else {
+                    $labourRate = $pricing['floor_labour_eng_glue_nail'];
+                    $labourLabel = 'Eng. Hardwood Labour (Glue & Nail)';
+                }
+            } else {
+                $labourRate = $pricing['floor_labour_vinyl_laminate'];
+                $labourLabel = 'Vinyl/Laminate Installation Labour';
+            }
+
             $cost = $totalSqft * $labourRate;
             $totalLabour = $cost;
-            $lineItems[] = ['desc' => 'Installation Labour — ' . number_format($totalSqft) . ' sqft', 'qty' => $totalSqft, 'unit' => $labourRate, 'cost' => $cost];
+            $lineItems[] = ['desc' => $labourLabel . ' — ' . number_format($totalSqft) . ' sqft', 'qty' => $totalSqft, 'unit' => $labourRate, 'cost' => $cost];
         }
     }
 

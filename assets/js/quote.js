@@ -277,7 +277,18 @@
         // Floor toggles
         if (name === 'floor_include_material') {
             var matSection = document.getElementById('floorMaterialSection');
-            if (value === 'yes') { show(matSection); } else { hide(matSection); }
+            var labourOnlySection = document.getElementById('floorLabourOnlySection');
+            if (value === 'yes') {
+                show(matSection);
+                if (labourOnlySection) hide(labourOnlySection);
+            } else {
+                hide(matSection);
+                if (labourOnlySection) {
+                    show(labourOnlySection);
+                    var labourType = document.getElementById('floor_labour_material_type');
+                    handleRadioChange('floor_labour_material_type', labourType ? labourType.value : 'vinyl_laminate');
+                }
+            }
         }
         if (name === 'floor_baseboard') {
             var bbInfo = document.getElementById('floorBaseboardInfo');
@@ -319,6 +330,10 @@
         if (name === 'recap_posts_type') {
             var el3 = document.getElementById('recapPostsQty');
             if (value) { show(el3); } else { hide(el3); }
+        }
+        if (name === 'floor_labour_material_type') {
+            var labourEngSection = document.getElementById('floorLabourEngMethodSection');
+            if (value === 'engineered') { show(labourEngSection); } else { hide(labourEngSection); }
         }
         // floor_demo_type and floor_eng_method don't need conditional reveals
     }
@@ -657,6 +672,16 @@
         initFloorSqftListener();
         initInfoModal();
         initContactModal();
+
+        // Initialize floor mode visibility based on defaults
+        var includeMaterial = document.getElementById('floor_include_material');
+        if (includeMaterial) {
+            handleToggleChange('floor_include_material', includeMaterial.value);
+        }
+        var labourType = document.getElementById('floor_labour_material_type');
+        if (labourType) {
+            handleRadioChange('floor_labour_material_type', labourType.value);
+        }
     }
 
     if (document.readyState === 'loading') {
