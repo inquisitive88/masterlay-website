@@ -62,7 +62,8 @@ $defaults = [
     'floor_material_vinyl' => 3.00, 'floor_material_laminate' => 2.50,
     'floor_labour_vinyl_laminate' => 1.00, 'floor_labour_eng_glue_nail' => 2.00,
     'floor_labour_eng_nails' => 1.80, 'floor_labour_hardwood' => 2.30, 'floor_labour_minimum' => 600,
-    'floor_baseboard_per_lf' => 2.00, 'floor_shoe_molding_per_lf' => 1.50,
+    'floor_baseboard_per_lf' => 2.00, 'floor_baseboard_labour_per_lf' => 1.10,
+    'floor_shoe_molding_per_lf' => 1.50, 'floor_shoe_molding_labour_per_lf' => 0.90,
 ];
 foreach ($defaults as $k => $v) {
     if (!isset($pricing[$k])) $pricing[$k] = $v;
@@ -320,15 +321,31 @@ if ($service_type === 'sanding') {
 
     // 4) Baseboard
     if (($_POST['floor_baseboard'] ?? 'no') === 'yes' && $calculatedLf > 0) {
-        $cost = $calculatedLf * $pricing['floor_baseboard_per_lf'];
-        $lineItems[] = ['desc' => 'Baseboard — ' . number_format($calculatedLf) . ' LF', 'qty' => $calculatedLf, 'unit' => $pricing['floor_baseboard_per_lf'], 'cost' => $cost];
+        $includeMaterial = ($_POST['floor_baseboard_include_material'] ?? 'yes') === 'yes';
+        $baseRate = $includeMaterial
+            ? (float)$pricing['floor_baseboard_per_lf']
+            : (float)$pricing['floor_baseboard_labour_per_lf'];
+
+        $cost = $calculatedLf * $baseRate;
+        $desc = $includeMaterial
+            ? 'Baseboard — ' . number_format($calculatedLf) . ' LF'
+            : 'Baseboard Labour Only — ' . number_format($calculatedLf) . ' LF';
+        $lineItems[] = ['desc' => $desc, 'qty' => $calculatedLf, 'unit' => $baseRate, 'cost' => $cost];
         $total += $cost;
     }
 
     // 5) Shoe Molding
     if (($_POST['floor_shoe_molding'] ?? 'no') === 'yes' && $calculatedLf > 0) {
-        $cost = $calculatedLf * $pricing['floor_shoe_molding_per_lf'];
-        $lineItems[] = ['desc' => 'Shoe Molding — ' . number_format($calculatedLf) . ' LF', 'qty' => $calculatedLf, 'unit' => $pricing['floor_shoe_molding_per_lf'], 'cost' => $cost];
+        $includeMaterial = ($_POST['floor_shoe_molding_include_material'] ?? 'yes') === 'yes';
+        $baseRate = $includeMaterial
+            ? (float)$pricing['floor_shoe_molding_per_lf']
+            : (float)$pricing['floor_shoe_molding_labour_per_lf'];
+
+        $cost = $calculatedLf * $baseRate;
+        $desc = $includeMaterial
+            ? 'Shoe Molding — ' . number_format($calculatedLf) . ' LF'
+            : 'Shoe Molding Labour Only — ' . number_format($calculatedLf) . ' LF';
+        $lineItems[] = ['desc' => $desc, 'qty' => $calculatedLf, 'unit' => $baseRate, 'cost' => $cost];
         $total += $cost;
     }
 }

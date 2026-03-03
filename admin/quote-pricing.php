@@ -51,7 +51,9 @@ $pricingFields = [
             'floor_labour_hardwood'       => ['label' => 'Labour — Hardwood (per sqft)', 'default' => 2.30],
             'floor_labour_minimum'        => ['label' => 'Labour — Minimum charge', 'default' => 600.00],
             'floor_baseboard_per_lf'      => ['label' => 'Baseboard (per linear foot)', 'default' => 2.00],
+            'floor_baseboard_labour_per_lf' => ['label' => 'Baseboard — Labour only (per linear foot)', 'default' => 1.10],
             'floor_shoe_molding_per_lf'   => ['label' => 'Shoe molding (per linear foot)', 'default' => 1.50],
+            'floor_shoe_molding_labour_per_lf' => ['label' => 'Shoe molding — Labour only (per linear foot)', 'default' => 0.90],
         ],
     ],
 ];

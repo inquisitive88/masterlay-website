@@ -351,6 +351,14 @@ $breadcrumbs = ['Home' => '/', 'Get Instant Quote' => ''];
                         </div>
                         <div id="floorBaseboardInfo" class="rounded-xl bg-white/5 border border-white/10 p-4" hidden>
                             <p class="text-white/50 text-sm">Estimated linear feet: <span id="floorBaseboardLf" class="text-primary font-bold">0</span> LF <span class="text-white/30">(total sqft &div; 3)</span></p>
+                            <div class="mt-4">
+                                <label class="form-label">Include baseboard material?</label>
+                                <div class="grid grid-cols-2 gap-3 mt-2">
+                                    <button type="button" data-toggle="floor_baseboard_include_material" data-value="yes" class="quote-toggle quote-toggle--active">Yes</button>
+                                    <button type="button" data-toggle="floor_baseboard_include_material" data-value="no" class="quote-toggle">No (Labour Only)</button>
+                                </div>
+                                <input type="hidden" name="floor_baseboard_include_material" id="floor_baseboard_include_material" value="yes">
+                            </div>
                         </div>
 
                         <!-- Shoe Molding -->
@@ -367,6 +375,14 @@ $breadcrumbs = ['Home' => '/', 'Get Instant Quote' => ''];
                         </div>
                         <div id="floorShoeMoldingInfo" class="rounded-xl bg-white/5 border border-white/10 p-4" hidden>
                             <p class="text-white/50 text-sm">Estimated linear feet: <span id="floorShoeMoldingLf" class="text-primary font-bold">0</span> LF <span class="text-white/30">(total sqft &div; 3)</span></p>
+                            <div class="mt-4">
+                                <label class="form-label">Include shoe molding material?</label>
+                                <div class="grid grid-cols-2 gap-3 mt-2">
+                                    <button type="button" data-toggle="floor_shoe_molding_include_material" data-value="yes" class="quote-toggle quote-toggle--active">Yes</button>
+                                    <button type="button" data-toggle="floor_shoe_molding_include_material" data-value="no" class="quote-toggle">No (Labour Only)</button>
+                                </div>
+                                <input type="hidden" name="floor_shoe_molding_include_material" id="floor_shoe_molding_include_material" value="yes">
+                            </div>
                         </div>
 
                     </div>
