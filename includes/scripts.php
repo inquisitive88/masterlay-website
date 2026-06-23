@@ -20,13 +20,13 @@
 
 <!-- Page-specific scripts (loaded conditionally) -->
 <?php if (isset($currentPage) && $currentPage === 'contact'): ?>
-<script src="<?= $basePath ?>assets/js/forms.js"></script>
+<script src="<?= $basePath ?>assets/js/forms.js<?= $jsCacheBust ?>"></script>
 <?php endif; ?>
 <?php if (isset($currentPage) && $currentPage === 'gallery'): ?>
-<script src="<?= $basePath ?>assets/js/gallery.js"></script>
+<script src="<?= $basePath ?>assets/js/gallery.js<?= $jsCacheBust ?>"></script>
 <?php endif; ?>
 <?php if (isset($currentPage) && ($currentPage === 'faq' || isset($loadFaqJs))): ?>
-<script src="<?= $basePath ?>assets/js/faq.js"></script>
+<script src="<?= $basePath ?>assets/js/faq.js<?= $jsCacheBust ?>"></script>
 <?php endif; ?>
 <?php if (isset($currentPage) && $currentPage === 'quote'): ?>
 <script src="<?= $basePath ?>assets/js/forms.js<?= $jsCacheBust ?>"></script>
@@ -34,4 +34,4 @@
 <?php endif; ?>
 
 <!-- App Init (always last) -->
-<script src="<?= $basePath ?>assets/js/app.js"></script>
+<script src="<?= $basePath ?>assets/js/app.js<?= $jsCacheBust ?>"></script>

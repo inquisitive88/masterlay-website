@@ -12,6 +12,23 @@ $_canonical = !empty($cms_seo['canonical_url']) ? $cms_seo['canonical_url'] : ''
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Mark JS-enabled before paint so CSS can pre-hide hero elements that
+         GSAP will animate in. Without this, the hero shows in its final state
+         for a fraction of a second, then GSAP hides it and re-animates it.
+         Direct children of .hero-pills and .hero-buttons are pre-hidden too —
+         the container becoming visible (via gsap.set) would otherwise reveal
+         them in their final state during GSAP's start-delay. -->
+    <script>document.documentElement.classList.add('js');</script>
+    <style>
+        .js .hero-label,
+        .js .hero-heading,
+        .js .hero-pills,
+        .js .hero-pills > *,
+        .js .hero-buttons,
+        .js .hero-buttons > *,
+        .js .hero-scroll { opacity: 0; }
+    </style>
     <title><?= htmlspecialchars($pageTitle ?? SITE_NAME) ?></title>
     <meta name="description" content="<?= htmlspecialchars($pageDescription ?? SITE_TAGLINE) ?>">
     <?php if ($_canonical): ?>

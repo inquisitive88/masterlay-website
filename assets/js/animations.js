@@ -226,6 +226,9 @@ function initAnimations() {
 }
 
 // ---- Hero Animation (called from specific pages) ----
+// Hero elements are pre-hidden via CSS (.js .hero-* { opacity: 0 }) so they
+// don't flash visible before GSAP runs. We use .fromTo() with explicit
+// end-state opacity:1 so GSAP overrides the CSS opacity:0 once animation runs.
 function animateHero() {
     const heroTl = gsap.timeline({ delay: 0.3 });
 
@@ -236,7 +239,9 @@ function animateHero() {
     const heroScroll = document.querySelector('.hero-scroll');
 
     if (heroLabel) {
-        heroTl.from(heroLabel, { opacity: 0, y: 20, duration: 0.6, ease: 'power3.out' });
+        heroTl.fromTo(heroLabel,
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' });
     }
 
     if (heroHeading) {
@@ -249,40 +254,35 @@ function animateHero() {
             line.parentNode.insertBefore(wrapper, line);
             wrapper.appendChild(line);
         });
-        heroTl.from(split.lines, {
-            yPercent: 110,
-            duration: 0.9,
-            ease: 'power3.out',
-            stagger: 0.12,
-        }, '-=0.2');
+        // Reveal the heading container itself (CSS hid it) before sliding lines in
+        gsap.set(heroHeading, { opacity: 1 });
+        heroTl.fromTo(split.lines,
+            { yPercent: 110 },
+            { yPercent: 0, duration: 0.9, ease: 'power3.out', stagger: 0.12 },
+            '-=0.2');
     }
 
     if (heroPills) {
-        heroTl.from(heroPills.children, {
-            opacity: 0,
-            y: 20,
-            duration: 0.5,
-            stagger: 0.08,
-            ease: 'power2.out',
-        }, '-=0.3');
+        gsap.set(heroPills, { opacity: 1 });
+        heroTl.fromTo(heroPills.children,
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, duration: 0.5, stagger: 0.08, ease: 'power2.out' },
+            '-=0.3');
     }
 
     if (heroButtons) {
-        heroTl.from(heroButtons.children, {
-            opacity: 0,
-            y: 20,
-            duration: 0.5,
-            stagger: 0.1,
-            ease: 'power2.out',
-        }, '-=0.2');
+        gsap.set(heroButtons, { opacity: 1 });
+        heroTl.fromTo(heroButtons.children,
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: 'power2.out' },
+            '-=0.2');
     }
 
     if (heroScroll) {
-        heroTl.from(heroScroll, {
-            opacity: 0,
-            duration: 0.4,
-            ease: 'power2.out',
-        }, '-=0.1');
+        heroTl.fromTo(heroScroll,
+            { opacity: 0 },
+            { opacity: 1, duration: 0.4, ease: 'power2.out' },
+            '-=0.1');
     }
 
     return heroTl;
