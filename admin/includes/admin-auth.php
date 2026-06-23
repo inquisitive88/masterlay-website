@@ -101,7 +101,12 @@ class CmsAuth {
     }
 
     /**
-     * Set remember-me cookie and store token
+     * Set remember-me cookie and store token in the UNIFIED auth_remember_tokens
+     * table shared with the estimator portal.
+     *
+     * The CMS uses its own cookie name (cms_remember) so it doesn't collide
+     * with the portal's ml_remember cookie. Selectors are random per cookie,
+     * so the two scopes coexist safely in the same DB table.
      */
     public static function setRememberToken(PDO $pdo, int $userId) {
         $selector = bin2hex(random_bytes(12));
@@ -109,7 +114,10 @@ class CmsAuth {
         $hashedValidator = hash('sha256', $validator);
         $expires = date('Y-m-d H:i:s', time() + (30 * 24 * 60 * 60));
 
-        $stmt = $pdo->prepare("INSERT INTO ml_admin_remember_tokens (user_id, selector, hashed_validator, expires) VALUES (?, ?, ?, ?)");
+        $stmt = $pdo->prepare(
+            "INSERT INTO auth_remember_tokens (user_id, selector, hashed_validator, expires_at, portal_scope)
+             VALUES (?, ?, ?, ?, 'admin')"
+        );
         $stmt->execute([$userId, $selector, $hashedValidator, $expires]);
 
         setcookie('cms_remember', $selector . ':' . $validator, [
@@ -123,7 +131,9 @@ class CmsAuth {
     }
 
     /**
-     * Try auto-login via remember-me cookie
+     * Try auto-login via remember-me cookie.
+     * Looks up the token in the unified auth_remember_tokens table and joins
+     * to auth_users to verify the user is still active and admin-eligible.
      */
     public static function tryRememberMe(PDO $pdo): bool {
         if (self::isLoggedIn()) return true;
@@ -134,16 +144,31 @@ class CmsAuth {
 
         [$selector, $validator] = $parts;
 
-        $stmt = $pdo->prepare("SELECT rt.*, u.username FROM ml_admin_remember_tokens rt JOIN ml_admin_users u ON u.id = rt.user_id WHERE rt.selector = ? AND rt.expires > NOW()");
+        $stmt = $pdo->prepare(
+            "SELECT rt.user_id, rt.hashed_validator, u.username, u.display_name, u.email
+             FROM auth_remember_tokens rt
+             JOIN auth_users u ON u.id = rt.user_id
+             JOIN auth_user_roles ur ON ur.user_id = u.id
+             JOIN auth_roles r ON r.id = ur.role_id
+             WHERE rt.selector = ?
+               AND rt.expires_at > NOW()
+               AND rt.portal_scope = 'admin'
+               AND u.status = 'active'
+               AND r.is_active = 1
+               AND r.role_key IN ('admin','admin_manager','partner_user')
+             GROUP BY rt.user_id, rt.hashed_validator, u.username, u.display_name, u.email
+             LIMIT 1"
+        );
         $stmt->execute([$selector]);
         $token = $stmt->fetch();
 
         if ($token && hash_equals($token['hashed_validator'], hash('sha256', $validator))) {
-            self::login($token['user_id'], $token['username']);
+            $display = $token['username'] ?: ($token['display_name'] ?: $token['email']);
+            self::login((int) $token['user_id'], (string) $display);
 
-            // Refresh the token
-            $pdo->prepare("DELETE FROM ml_admin_remember_tokens WHERE selector = ?")->execute([$selector]);
-            self::setRememberToken($pdo, $token['user_id']);
+            // Rotate the token (best practice: invalidate old selector + issue new)
+            $pdo->prepare("DELETE FROM auth_remember_tokens WHERE selector = ?")->execute([$selector]);
+            self::setRememberToken($pdo, (int) $token['user_id']);
 
             return true;
         }

@@ -6,6 +6,16 @@
 /* ---- Reset ---- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* ---- Form Controls: theme accent for native checkboxes & radios ----
+   Tailwind's text-primary class only colors form elements when the Forms
+   plugin is loaded, which the CDN build doesn't include. Using the native
+   CSS accent-color property gives us the brand orange on checked state
+   without any JS / plugin dependency. */
+input[type="checkbox"],
+input[type="radio"] {
+    accent-color: #FAA416;
+}
+
 /* ---- Sidebar ---- */
 .admin-sidebar {
     position: fixed;

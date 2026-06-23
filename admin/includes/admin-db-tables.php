@@ -1,8 +1,16 @@
 <?php
 /**
  * CMS Admin - Database Table Definitions
- * Creates all ml_cms_* tables if they don't exist
- * Also ensures ml_admin_users table exists for auth
+ * Creates all ml_cms_* tables if they don't exist.
+ *
+ * Auth tables note:
+ *   The CMS no longer uses the legacy ml_admin_users / ml_admin_remember_tokens /
+ *   ml_admin_password_resets tables for authentication. As of the auth-unification
+ *   refactor, login reads from auth_users (joined via auth_user_roles + auth_roles)
+ *   and remember-me uses auth_remember_tokens with portal_scope='admin'.
+ *   The CREATE TABLE statements below are kept for backwards compatibility on
+ *   any installs that haven't run the estimator portal's auth migration yet,
+ *   but new code paths target the unified tables exclusively.
  */
 
 if (!isset($pdo)) {
@@ -10,7 +18,8 @@ if (!isset($pdo)) {
 }
 
 $cms_tables = [
-    // Auth tables (shared with estimator portal)
+    // Legacy auth tables — retained for backwards compat; new code uses
+    // auth_users / auth_remember_tokens (created by the estimator portal's db.php).
     'ml_admin_users' => "
         CREATE TABLE IF NOT EXISTS ml_admin_users (
             id INT AUTO_INCREMENT PRIMARY KEY,

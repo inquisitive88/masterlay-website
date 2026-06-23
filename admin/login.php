@@ -30,15 +30,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($username) || empty($password)) {
         $error = 'Please enter both username and password.';
     } else {
-        $stmt = $pdo->prepare("SELECT id, username, password_hash FROM ml_admin_users WHERE username = ? OR email = ? LIMIT 1");
-        $stmt->execute([$username, $username]);
+        // Read from the unified auth tables shared with the estimator portal.
+        // Only allow users in an admin-portal role and with active status.
+        $stmt = $pdo->prepare(
+            "SELECT u.id, u.username, u.email, u.password_hash, u.display_name
+             FROM auth_users u
+             JOIN auth_user_roles ur ON ur.user_id = u.id
+             JOIN auth_roles r ON r.id = ur.role_id
+             WHERE (u.username = ? OR u.email = ?)
+               AND u.status = 'active'
+               AND r.is_active = 1
+               AND r.role_key IN ('admin','admin_manager','partner_user')
+             GROUP BY u.id
+             LIMIT 1"
+        );
+        $stmt->execute([$username, strtolower($username)]);
         $user = $stmt->fetch();
 
-        if ($user && password_verify($password, $user['password_hash'])) {
-            CmsAuth::login($user['id'], $user['username']);
+        if ($user && !empty($user['password_hash']) && password_verify($password, $user['password_hash'])) {
+            $display = $user['username'] ?: ($user['display_name'] ?: $user['email']);
+            CmsAuth::login((int) $user['id'], (string) $display);
 
             if ($remember) {
-                CmsAuth::setRememberToken($pdo, $user['id']);
+                CmsAuth::setRememberToken($pdo, (int) $user['id']);
             }
 
             header('Location: /admin');
@@ -49,8 +63,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Check if any admin users exist
-$adminCount = $pdo->query("SELECT COUNT(*) FROM ml_admin_users")->fetchColumn();
+// Check if any admin-eligible users exist (in the unified auth tables)
+$adminCount = $pdo->query(
+    "SELECT COUNT(DISTINCT u.id)
+     FROM auth_users u
+     JOIN auth_user_roles ur ON ur.user_id = u.id
+     JOIN auth_roles r ON r.id = ur.role_id
+     WHERE u.status = 'active'
+       AND r.is_active = 1
+       AND r.role_key IN ('admin','admin_manager','partner_user')"
+)->fetchColumn();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -133,9 +155,9 @@ $adminCount = $pdo->query("SELECT COUNT(*) FROM ml_admin_users")->fetchColumn();
                 </div>
 
                 <div class="flex items-center justify-between">
-                    <label class="flex items-center gap-2 cursor-pointer">
-                        <input type="checkbox" name="remember" class="w-4 h-4 rounded border-white/20 bg-dark-100 text-primary focus:ring-primary/30 focus:ring-2">
-                        <span class="text-white/50 text-sm">Remember me</span>
+                    <label class="flex items-center gap-3 cursor-pointer">
+                        <input type="checkbox" name="remember" value="1" class="w-4 h-4 rounded border-white/20 bg-dark-100 text-primary focus:ring-primary/30">
+                        <span class="text-white/70 text-sm">Remember me</span>
                     </label>
                 </div>
 
