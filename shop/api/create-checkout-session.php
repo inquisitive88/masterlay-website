@@ -121,7 +121,10 @@ try {
     }
 
     // ---- Create the order NOW (pending) with the buyer's own details ----
-    $orderNumber = 'MLW-' . date('Y') . '-' . str_pad((string) ((int) $pdo->query("SELECT COALESCE(MAX(id),0) FROM shop_orders")->fetchColumn() + 1), 4, '0', STR_PAD_LEFT);
+    // Order numbers are MLW-(2188 + row id): flat sequence starting at
+    // MLW-2189, no year/count structure. Insert with a placeholder first so
+    // the number always derives from the real AUTO_INCREMENT id.
+    $orderNumber = 'TMP-' . bin2hex(random_bytes(8));
     $pdo->beginTransaction();
     $pdo->prepare("INSERT INTO shop_orders
         (order_number, customer_name, customer_email, customer_phone,
@@ -145,6 +148,8 @@ try {
             round((float) $p['price'] * $qty, 2), (int) $p['lead_time_weeks'],
         ]);
     }
+    $orderNumber = 'MLW-' . (2188 + $orderId);
+    $pdo->prepare("UPDATE shop_orders SET order_number = ? WHERE id = ?")->execute([$orderNumber, $orderId]);
     $pdo->commit();
 
     $session = shop_stripe()->checkout->sessions->create([

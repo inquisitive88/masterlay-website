@@ -93,6 +93,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'mark-
     redirect('/shop/admin/orders', 'success', 'Balance for ' . $order['order_number'] . ' marked received (' . $method . ').');
 }
 
+// ---- Delete order (record removal only — never touches the Stripe payment) ----
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'delete-order') {
+    require_csrf();
+    $stmt = $pdo->prepare("SELECT order_number FROM shop_orders WHERE id = ?");
+    $stmt->execute([(int) ($_POST['order_id'] ?? 0)]);
+    $num = $stmt->fetchColumn();
+    if (!$num) {
+        redirect('/shop/admin/orders', 'error', 'Order not found.');
+    }
+    $pdo->prepare("DELETE FROM shop_orders WHERE id = ?")->execute([(int) $_POST['order_id']]); // items cascade
+    redirect('/shop/admin/orders', 'success', 'Order ' . $num . ' deleted.');
+}
+
 // ---- Status update ----
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'set-status') {
     require_csrf();
@@ -247,7 +260,14 @@ include dirname(__DIR__, 2) . '/admin/includes/admin-layout-top.php';
                     <input type="checkbox" name="notify" value="1" checked> Email customer
                 </label>
                 <button type="submit" class="admin-btn admin-btn-primary">Update</button>
-            </form>
+                </form>
+                <form method="POST" action="/shop/admin/orders" style="margin-left:auto;"
+                      onsubmit="return confirm('Delete order <?= e($o['order_number']) ?> permanently?\n\nThis removes the record from YOUR system only — it does not refund or cancel anything in Stripe. This cannot be undone.');">
+                    <?= csrf_field() ?>
+                    <input type="hidden" name="action" value="delete-order">
+                    <input type="hidden" name="order_id" value="<?= (int) $o['id'] ?>">
+                    <button type="submit" class="admin-btn admin-btn-sm" style="border-color:rgba(239,68,68,0.4);color:#ef4444;background:none;">Delete</button>
+                </form>
 
             <?php if ($o['status'] !== 'pending' && $o['status'] !== 'cancelled' && (float) $o['balance_due'] > 0.009 && $o['balance_paid_at'] === null): ?>
             <div class="flex items-center gap-3 flex-wrap mt-3 pt-3" style="border-top:1px dashed rgba(255,255,255,0.07);">
