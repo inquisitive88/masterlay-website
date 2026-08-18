@@ -1,3 +1,6 @@
 # Ignore Composer files that should not be pushed to git
 /vendor/
 composer.lock
+
+# Local Stripe test keys (never committed)
+shop/includes/shop-stripe-keys.local.php

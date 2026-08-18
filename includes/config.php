@@ -177,6 +177,7 @@ $navigation = [
     ['label' => 'About', 'url' => '/about', 'page' => 'about'],
     ['label' => 'Services', 'url' => '/services', 'page' => 'services', 'dropdown' => true],
     ['label' => 'Gallery', 'url' => '/gallery', 'page' => 'gallery'],
+    ['label' => 'Shop', 'url' => '/shop/', 'page' => 'shop'],
     ['label' => 'Financing', 'url' => '/financing', 'page' => 'financing'],
     ['label' => 'Testimonials', 'url' => '/testimonials', 'page' => 'testimonials'],
     ['label' => 'Contact', 'url' => '/contact', 'page' => 'contact'],
@@ -201,6 +202,7 @@ use PHPMailer\PHPMailer\Exception;
 
 function get_masterlay_mailer() {
     $mail = new PHPMailer(true);
+    $mail->CharSet = 'UTF-8'; // PHPMailer defaults to ISO-8859-1, which mangles UTF-8 (e.g. bullets)
     $mail->SMTPDebug = 0;
     $mail->Debugoutput = 'error_log';
     try {

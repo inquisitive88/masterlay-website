@@ -126,11 +126,11 @@ include __DIR__ . '/includes/admin-layout-top.php';
 
                 <!-- Upload Area -->
                 <div class="admin-upload-area" id="uploadArea">
-                    <input type="file" name="image" id="imageInput" accept="image/jpeg,image/png,image/webp" class="hidden">
+                    <input type="file" name="image" id="imageInput" accept="image/jpeg,image/png,image/webp" class="hidden" onclick="event.stopPropagation()">
                     <svg class="w-10 h-10 text-white/20 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
                     <p class="text-white/40 text-sm mb-1"><?= $isEdit ? 'Drop a new image to replace' : 'Drop an image here or click to upload' ?></p>
                     <p class="text-white/20 text-xs">JPG, PNG, or WebP &mdash; Max 10MB</p>
-                    <button type="button" onclick="document.getElementById('imageInput').click()" class="admin-btn admin-btn-secondary admin-btn-sm mt-3">
+                    <button type="button" onclick="event.stopPropagation();document.getElementById('imageInput').click()" class="admin-btn admin-btn-secondary admin-btn-sm mt-3">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
                         Choose File
                     </button>

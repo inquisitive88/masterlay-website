@@ -1,0 +1,7 @@
+<?php
+// Copy to shop-stripe-keys.local.php (gitignored) and fill in TEST-mode keys.
+// Prod never reads this file — live keys come from /etc/masterlay/stripe-secrets.php.
+return [
+    'secret_key' => 'sk_test_...',
+    'webhook_secret' => '', // optional: local `stripe listen` signing secret
+];

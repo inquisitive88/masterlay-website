@@ -13,7 +13,7 @@ define('R2_LOADED', true);
 $autoloadPath = dirname(__DIR__, 2) . '/vendor/autoload.php';
 if (!file_exists($autoloadPath)) {
     // Graceful fallback - R2 upload won't work but won't crash the page
-    function r2_upload_file($file) {
+    function r2_upload_file($file, $prefix = 'images/gallery') {
         return ['success' => false, 'url' => null, 'key' => null, 'error' => 'AWS SDK not installed. Run: composer require aws/aws-sdk-php'];
     }
     function r2_delete_file($key) {
@@ -55,7 +55,7 @@ $r2CmsClient = new S3Client([
  * @param array $file $_FILES['fieldname'] array
  * @return array ['success' => bool, 'url' => string|null, 'key' => string|null, 'error' => string|null]
  */
-function r2_upload_file($file) {
+function r2_upload_file($file, $prefix = 'images/gallery') {
     global $r2CmsClient, $r2_cms_config;
 
     // Validate file
@@ -87,7 +87,7 @@ function r2_upload_file($file) {
     };
     $timestamp = time();
     $random = bin2hex(random_bytes(8));
-    $key = "images/gallery/{$timestamp}-{$random}.{$ext}";
+    $key = rtrim($prefix, '/') . "/{$timestamp}-{$random}.{$ext}";
 
     try {
         $r2CmsClient->putObject([

@@ -68,7 +68,7 @@ try {
     <div style='font-family: Arial, Helvetica, sans-serif; max-width: 600px; margin: 0 auto; background-color: #f9f9f9; padding: 0;'>
         <div style='background-color: #0A0A0A; padding: 30px 40px; text-align: center;'>
             <h1 style='color: #FAA416; margin: 0; font-size: 24px;'>New Contact Inquiry</h1>
-            <p style='color: #ffffff99; margin: 8px 0 0; font-size: 14px;'>Submitted via masterlayrenovations.ca</p>
+            <p style='color: #b9b9b9; margin: 8px 0 0; font-size: 14px;'>Submitted via masterlayrenovations.ca</p>
         </div>
         <div style='background-color: #ffffff; padding: 30px 40px;'>
             <table style='width: 100%; border-collapse: collapse;'>
@@ -99,7 +99,7 @@ try {
             </table>
         </div>
         <div style='background-color: #0A0A0A; padding: 20px 40px; text-align: center;'>
-            <p style='color: #ffffff60; margin: 0; font-size: 12px;'>&copy; " . date('Y') . " " . SITE_NAME . " &bull; " . ADDRESS . "</p>
+            <p style='color: #8a8a8a; margin: 0; font-size: 12px;'>&copy; " . date('Y') . " " . SITE_NAME . " &bull; " . ADDRESS . "</p>
         </div>
     </div>";
 

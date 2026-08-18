@@ -370,7 +370,7 @@ try {
     <div style='font-family: Arial, Helvetica, sans-serif; max-width: 600px; margin: 0 auto; background-color: #f9f9f9;'>
         <div style='background-color: #0A0A0A; padding: 30px 40px; text-align: center;'>
             <h1 style='color: #FAA416; margin: 0; font-size: 24px;'>Your " . htmlspecialchars($emailCategory) . " Renovation Quote</h1>
-            <p style='color: #ffffff99; margin: 8px 0 0; font-size: 14px;'>" . htmlspecialchars($serviceLabel) . "</p>
+            <p style='color: #b9b9b9; margin: 8px 0 0; font-size: 14px;'>" . htmlspecialchars($serviceLabel) . "</p>
         </div>
         <div style='background-color: #ffffff; padding: 30px 40px;'>
             <p style='color: #333; font-size: 14px; margin: 0 0 20px;'>Hi " . htmlspecialchars($name) . ",</p>
@@ -380,7 +380,7 @@ try {
             <ul style='list-style: none; padding: 0; margin: 0 0 24px;'>{$itemsHtml}</ul>
 
             <div style='background-color: #0A0A0A; border-radius: 8px; padding: 20px; text-align: center; margin: 0 0 24px;'>
-                <p style='color: #ffffff99; font-size: 12px; margin: 0 0 4px; text-transform: uppercase; letter-spacing: 1px;'>Estimated Total</p>
+                <p style='color: #b9b9b9; font-size: 12px; margin: 0 0 4px; text-transform: uppercase; letter-spacing: 1px;'>Estimated Total</p>
                 <p style='color: #FAA416; font-size: 32px; font-weight: bold; margin: 0;'>{$formattedTotal}</p>
             </div>
 
@@ -391,7 +391,7 @@ try {
             </div>
         </div>
         <div style='background-color: #0A0A0A; padding: 20px 40px; text-align: center;'>
-            <p style='color: #ffffff60; margin: 0; font-size: 12px;'>&copy; " . date('Y') . " " . SITE_NAME . " &bull; " . ADDRESS . "</p>
+            <p style='color: #8a8a8a; margin: 0; font-size: 12px;'>&copy; " . date('Y') . " " . SITE_NAME . " &bull; " . ADDRESS . "</p>
         </div>
     </div>";
 
@@ -430,7 +430,7 @@ try {
     <div style='font-family: Arial, Helvetica, sans-serif; max-width: 600px; margin: 0 auto; background-color: #f9f9f9;'>
         <div style='background-color: #0A0A0A; padding: 30px 40px; text-align: center;'>
             <h1 style='color: #FAA416; margin: 0; font-size: 24px;'>New Quote Request</h1>
-            <p style='color: #ffffff99; margin: 8px 0 0; font-size: 14px;'>from " . htmlspecialchars($name) . "</p>
+            <p style='color: #b9b9b9; margin: 8px 0 0; font-size: 14px;'>from " . htmlspecialchars($name) . "</p>
         </div>
         <div style='background-color: #ffffff; padding: 30px 40px;'>
             <h3 style='color: #0A0A0A; font-size: 14px; margin: 0 0 12px;'>Customer Information</h3>
@@ -469,12 +469,12 @@ try {
             </table>
 
             <div style='background-color: #0A0A0A; border-radius: 8px; padding: 16px 20px; text-align: right;'>
-                <span style='color: #ffffff99; font-size: 14px; margin-right: 12px;'>Total:</span>
+                <span style='color: #b9b9b9; font-size: 14px; margin-right: 12px;'>Total:</span>
                 <span style='color: #FAA416; font-size: 24px; font-weight: bold;'>{$formattedTotal}</span>
             </div>
         </div>
         <div style='background-color: #0A0A0A; padding: 20px 40px; text-align: center;'>
-            <p style='color: #ffffff60; margin: 0; font-size: 12px;'>&copy; " . date('Y') . " " . SITE_NAME . " &bull; " . ADDRESS . "</p>
+            <p style='color: #8a8a8a; margin: 0; font-size: 12px;'>&copy; " . date('Y') . " " . SITE_NAME . " &bull; " . ADDRESS . "</p>
         </div>
     </div>";
 
