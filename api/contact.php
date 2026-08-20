@@ -16,13 +16,17 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../includes/config.php';
 
-// Collect and sanitize input
-$name    = trim(filter_input(INPUT_POST, 'name', FILTER_SANITIZE_SPECIAL_CHARS) ?? '');
-$email   = trim(filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL) ?? '');
-$phone   = trim(filter_input(INPUT_POST, 'phone', FILTER_SANITIZE_SPECIAL_CHARS) ?? '');
-$service = trim(filter_input(INPUT_POST, 'service', FILTER_SANITIZE_SPECIAL_CHARS) ?? '');
-$message = trim(filter_input(INPUT_POST, 'message', FILTER_SANITIZE_SPECIAL_CHARS) ?? '');
-$budget  = trim(filter_input(INPUT_POST, 'budget', FILTER_SANITIZE_SPECIAL_CHARS) ?? '');
+// Collect input RAW — escaping happens exactly once, at output.
+// (FILTER_SANITIZE_SPECIAL_CHARS entity-encodes &, quotes and even line
+// breaks at intake; combined with htmlspecialchars() in the template that
+// double-encoded, showing literal &#38; / &#13;&#10; in the emails.)
+$oneLine = static fn($v) => trim(preg_replace('/[\r\n]+/', ' ', (string) $v));
+$name    = mb_substr($oneLine($_POST['name'] ?? ''), 0, 150);
+$email   = trim((string) filter_var($_POST['email'] ?? '', FILTER_SANITIZE_EMAIL));
+$phone   = mb_substr($oneLine($_POST['phone'] ?? ''), 0, 40);
+$service = mb_substr($oneLine($_POST['service'] ?? ''), 0, 100);
+$message = mb_substr(trim((string) ($_POST['message'] ?? '')), 0, 5000); // multi-line, breaks preserved
+$budget  = mb_substr($oneLine($_POST['budget'] ?? ''), 0, 100);
 
 // Server-side validation
 $errors = [];
@@ -64,6 +68,12 @@ try {
     $serviceLabel = $service ?: 'Not specified';
     $budgetLabel  = $budget ?: 'Not specified';
 
+    // HTML-escape ONCE, here at output
+    $nameH = htmlspecialchars($name);
+    $emailH = htmlspecialchars($email);
+    $phoneH = htmlspecialchars($phone);
+    $serviceLabelH = htmlspecialchars($serviceLabel);
+    $budgetLabelH = htmlspecialchars($budgetLabel);
     $mail->Body = "
     <div style='font-family: Arial, Helvetica, sans-serif; max-width: 600px; margin: 0 auto; background-color: #f9f9f9; padding: 0;'>
         <div style='background-color: #0A0A0A; padding: 30px 40px; text-align: center;'>
@@ -74,23 +84,23 @@ try {
             <table style='width: 100%; border-collapse: collapse;'>
                 <tr>
                     <td style='padding: 12px 0; border-bottom: 1px solid #eee; color: #666; font-size: 13px; width: 130px; vertical-align: top;'>Name</td>
-                    <td style='padding: 12px 0; border-bottom: 1px solid #eee; color: #333; font-size: 14px; font-weight: 600;'>{$name}</td>
+                    <td style='padding: 12px 0; border-bottom: 1px solid #eee; color: #333; font-size: 14px; font-weight: 600;'>{$nameH}</td>
                 </tr>
                 <tr>
                     <td style='padding: 12px 0; border-bottom: 1px solid #eee; color: #666; font-size: 13px; vertical-align: top;'>Email</td>
-                    <td style='padding: 12px 0; border-bottom: 1px solid #eee; color: #333; font-size: 14px;'><a href='mailto:{$email}' style='color: #FAA416;'>{$email}</a></td>
+                    <td style='padding: 12px 0; border-bottom: 1px solid #eee; color: #333; font-size: 14px;'><a href='mailto:{$emailH}' style='color: #FAA416;'>{$emailH}</a></td>
                 </tr>
                 <tr>
                     <td style='padding: 12px 0; border-bottom: 1px solid #eee; color: #666; font-size: 13px; vertical-align: top;'>Phone</td>
-                    <td style='padding: 12px 0; border-bottom: 1px solid #eee; color: #333; font-size: 14px;'><a href='tel:{$phone}' style='color: #FAA416;'>{$phone}</a></td>
+                    <td style='padding: 12px 0; border-bottom: 1px solid #eee; color: #333; font-size: 14px;'><a href='tel:{$phoneH}' style='color: #FAA416;'>{$phoneH}</a></td>
                 </tr>
                 <tr>
                     <td style='padding: 12px 0; border-bottom: 1px solid #eee; color: #666; font-size: 13px; vertical-align: top;'>Service</td>
-                    <td style='padding: 12px 0; border-bottom: 1px solid #eee; color: #333; font-size: 14px;'>{$serviceLabel}</td>
+                    <td style='padding: 12px 0; border-bottom: 1px solid #eee; color: #333; font-size: 14px;'>{$serviceLabelH}</td>
                 </tr>
                 <tr>
                     <td style='padding: 12px 0; border-bottom: 1px solid #eee; color: #666; font-size: 13px; vertical-align: top;'>Budget</td>
-                    <td style='padding: 12px 0; border-bottom: 1px solid #eee; color: #333; font-size: 14px;'>{$budgetLabel}</td>
+                    <td style='padding: 12px 0; border-bottom: 1px solid #eee; color: #333; font-size: 14px;'>{$budgetLabelH}</td>
                 </tr>
                 <tr>
                     <td style='padding: 12px 0; color: #666; font-size: 13px; vertical-align: top;'>Message</td>

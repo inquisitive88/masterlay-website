@@ -16,13 +16,14 @@ require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../includes/config.php';
 require_once __DIR__ . '/../includes/db-connection.php';
 
-// Collect and sanitize input
-$name         = trim(filter_input(INPUT_POST, 'name', FILTER_SANITIZE_SPECIAL_CHARS) ?? '');
-$email        = trim(filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL) ?? '');
-$phone        = trim(filter_input(INPUT_POST, 'phone', FILTER_SANITIZE_SPECIAL_CHARS) ?? '');
-$address      = trim(filter_input(INPUT_POST, 'address', FILTER_SANITIZE_SPECIAL_CHARS) ?? '');
-$notes        = trim(filter_input(INPUT_POST, 'notes', FILTER_SANITIZE_SPECIAL_CHARS) ?? '');
-$service_type = trim(filter_input(INPUT_POST, 'service_type', FILTER_SANITIZE_SPECIAL_CHARS) ?? '');
+// Collect input RAW — escaping happens exactly once, at output (see contact.php).
+$oneLine = static fn($v) => trim(preg_replace('/[\r\n]+/', ' ', (string) $v));
+$name         = mb_substr($oneLine($_POST['name'] ?? ''), 0, 150);
+$email        = trim((string) filter_var($_POST['email'] ?? '', FILTER_SANITIZE_EMAIL));
+$phone        = mb_substr($oneLine($_POST['phone'] ?? ''), 0, 40);
+$address      = mb_substr($oneLine($_POST['address'] ?? ''), 0, 255);
+$notes        = mb_substr(trim((string) ($_POST['notes'] ?? '')), 0, 5000); // multi-line
+$service_type = mb_substr($oneLine($_POST['service_type'] ?? ''), 0, 100);
 
 // Validate required fields
 $errors = [];
@@ -423,6 +424,8 @@ try {
             </tr>";
     }
 
+    $emailH = htmlspecialchars($email);
+    $phoneH = htmlspecialchars($phone);
     $addressHtml = $address ? htmlspecialchars($address) : '<span style="color:#999;">Not provided</span>';
     $notesHtml = $notes ? nl2br(htmlspecialchars($notes)) : '<span style="color:#999;">None</span>';
 
@@ -441,11 +444,11 @@ try {
                 </tr>
                 <tr>
                     <td style='padding: 8px 0; border-bottom: 1px solid #eee; color: #666; font-size: 13px;'>Email</td>
-                    <td style='padding: 8px 0; border-bottom: 1px solid #eee; color: #333; font-size: 13px;'><a href='mailto:{$email}' style='color: #FAA416;'>{$email}</a></td>
+                    <td style='padding: 8px 0; border-bottom: 1px solid #eee; color: #333; font-size: 13px;'><a href='mailto:{$emailH}' style='color: #FAA416;'>{$emailH}</a></td>
                 </tr>
                 <tr>
                     <td style='padding: 8px 0; border-bottom: 1px solid #eee; color: #666; font-size: 13px;'>Phone</td>
-                    <td style='padding: 8px 0; border-bottom: 1px solid #eee; color: #333; font-size: 13px;'><a href='tel:{$phone}' style='color: #FAA416;'>{$phone}</a></td>
+                    <td style='padding: 8px 0; border-bottom: 1px solid #eee; color: #333; font-size: 13px;'><a href='tel:{$phoneH}' style='color: #FAA416;'>{$phoneH}</a></td>
                 </tr>
                 <tr>
                     <td style='padding: 8px 0; border-bottom: 1px solid #eee; color: #666; font-size: 13px;'>Address</td>
